@@ -20,6 +20,7 @@
             --text-muted: #94A3B8;
             --accent-gold: #F59E0B;
             --accent-blue: #38BDF8;
+            --accent-red: #EF4444;
         }
 
         * { 
@@ -53,25 +54,93 @@
 
         /* HEADER */
         header { 
-            text-align: center; 
-            margin-bottom: 4px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+            flex-wrap: wrap;
+            gap: 16px;
         }
         
-        header h1 { 
+        .header-title h1 { 
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 3.5vw, 3.2rem); 
+            font-size: clamp(2rem, 3.2vw, 3rem); 
             font-weight: 800; 
             color: #FFFFFF; 
             letter-spacing: -0.5px;
         }
         
-        header p { 
-            font-size: clamp(0.72rem, 1vw, 0.85rem); 
-            letter-spacing: 4px; 
+        .header-title p { 
+            font-size: clamp(0.7rem, 0.9vw, 0.82rem); 
+            letter-spacing: 3px; 
             color: var(--accent-blue); 
             font-weight: 700; 
             text-transform: uppercase;
-            margin-top: 6px;
+            margin-top: 4px;
+        }
+
+        /* STRATEGIX FEATURED HEADER BUTTON - CUSTOM PLAYFAIR & ALIGNMENT */
+        .strategix-badge-btn {
+            background: rgba(18, 27, 40, 0.95);
+            border: 1px solid rgba(239, 68, 68, 0.45);
+            padding: 12px 24px;
+            border-radius: 18px;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center aligns tagline and title box */
+            justify-content: center;
+            gap: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+        }
+
+        .strategix-badge-btn:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-red);
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.4);
+            background: rgba(26, 39, 58, 0.95);
+        }
+
+        .brand-top-row {
+            display: flex;
+            align-items: flex-end; /* Bottom Align Icon and Brand Name */
+            gap: 10px;
+        }
+
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-red);
+            border-radius: 50%;
+            display: inline-block;
+            margin-bottom: 5px; /* Slight offset for perfect visual baseline */
+            animation: pulse-red 1.5s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(1.3); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .badge-text h4 {
+            font-family: 'Playfair Display', serif; /* Custom Font */
+            font-size: 1.5rem; /* Bigger Strategix Font */
+            font-weight: 800;
+            line-height: 1;
+            color: #FFF;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-text p {
+            font-size: 0.72rem; 
+            color: var(--text-muted);
+            letter-spacing: 0.3px;
+            font-weight: 500;
+            text-align: center; /* Center aligned text */
+            margin-top: 2px;
         }
 
         /* HERO BANNER WITH 16:9 VIDEO */
@@ -211,7 +280,7 @@
             font-weight: 700;
         }
 
-        /* MODAL POPUP FOR CREDENTIALS */
+        /* MODAL POPUP STYLES */
         .modal {
             display: none; 
             position: fixed;
@@ -258,14 +327,13 @@
             color: var(--text-main);
         }
 
-        .cert-list { 
+        .item-list { 
             display: flex; 
             flex-direction: column; 
             gap: 10px; 
         }
         
-        /* CLICKABLE CERTIFICATE ITEM */
-        .cert-item {
+        .list-item {
             background: #080D14; 
             border: 1px solid var(--border-color);
             padding: 12px 14px; 
@@ -278,18 +346,18 @@
             cursor: pointer;
         }
 
-        .cert-item:hover {
+        .list-item:hover {
             background: rgba(26, 39, 58, 0.95);
             border-color: rgba(56, 189, 248, 0.4);
             transform: translateX(4px);
         }
         
-        .cert-item h4 { 
+        .list-item h4 { 
             font-size: 0.85rem; 
             color: #FFF; 
         }
         
-        .cert-item p { 
+        .list-item p { 
             font-size: 0.7rem; 
             color: var(--text-muted); 
         }
@@ -322,6 +390,11 @@
         @media (max-width: 600px) {
             body { 
                 padding: 16px 12px; 
+            }
+            header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
             }
             .base-grid { 
                 grid-template-columns: repeat(3, 1fr); 
@@ -358,8 +431,24 @@
         
         <!-- HEADER -->
         <header>
-            <h1>Amitosh Kumar</h1>
-            <p>A TECHNO-ECONOMIST</p>
+            <div class="header-title">
+                <h1>Amitosh Kumar</h1>
+                <p>A TECHNO-ECONOMIST</p>
+            </div>
+
+            <!-- CUSTOM STRATEGIX LOGO BADGE -->
+            <a href="https://strategix-671509941714.us-west1.run.app" target="_blank" class="strategix-badge-btn">
+                <div class="brand-top-row">
+                    <i class="fa-solid fa-chart-line" style="color: var(--accent-red); font-size: 1.6rem; margin-bottom: 2px;"></i>
+                    <div class="badge-text">
+                        <h4>Strategix</h4>
+                    </div>
+                    <span class="live-dot"></span>
+                </div>
+                <div class="badge-text">
+                    <p>Live Stream - financial news app</p>
+                </div>
+            </a>
         </header>
 
         <!-- TOP BANNER -->
@@ -380,7 +469,7 @@
         <div class="base-grid">
             
             <!-- 01. Credentials (Modal Trigger) -->
-            <div class="app-card" onclick="openModal()">
+            <div class="app-card" onclick="openModal('certModal')">
                 <div class="icon-wrapper cert-bg"><i class="fa-solid fa-award"></i></div>
                 <div class="card-info">
                     <h3>Credentials</h3>
@@ -406,14 +495,14 @@
                 </div>
             </a>
 
-            <!-- 04. Research Blog -->
-            <a href="#" target="_blank" class="app-card">
+            <!-- 04. Research (Modal Trigger for Dummy Research Pages) -->
+            <div class="app-card" onclick="openModal('researchModal')">
                 <div class="icon-wrapper blog-bg"><i class="fa-solid fa-newspaper"></i></div>
                 <div class="card-info">
                     <h3>Research</h3>
                     <p>Macro Analysis</p>
                 </div>
-            </a>
+            </div>
 
             <!-- 05. LinkedIn -->
             <a href="https://www.linkedin.com/in/amitosh-kumar" target="_blank" class="app-card">
@@ -442,27 +531,24 @@
         DESIGNED BY <span>AMITOSH KUMAR</span>
     </footer>
 
-    <!-- CREDENTIALS MODAL POPUP WITH EXTERNAL LINKS -->
+    <!-- 01. CREDENTIALS MODAL POPUP -->
     <div id="certModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2><i class="fa-solid fa-certificate"></i> Credentials & Honors</h2>
-                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <span class="close-btn" onclick="closeModal('certModal')">&times;</span>
             </div>
             
-            <div class="cert-list">
-                
-               <!-- Link 1: ISB Certificate -->
-				<a href="https://coursera.org/share/c9fcb553b422ca429d319f36fd4937f9" target="_blank" class="cert-item">
-    				<div>
-					<h4>Advanced Trading Algorithms</h4>
-					<p>Indian School of Business (ISB)</p>
-				</div>
-				<span class="tag-badge tag-digital">Verified <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
-			</a>
+            <div class="item-list">
+                <a href="https://coursera.org/share/c9fcb553b422ca429d319f36fd4937f9" target="_blank" class="list-item">
+                    <div>
+                        <h4>Advanced Trading Algorithms</h4>
+                        <p>Indian School of Business (ISB)</p>
+                    </div>
+                    <span class="tag-badge tag-digital">Verified <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
+                </a>
 
-                <!-- Link 2: Columbia Certificate -->
-                <a href="https://your-actual-certificate-link-2.com" target="_blank" class="cert-item">
+                <a href="https://your-actual-certificate-link-2.com" target="_blank" class="list-item">
                     <div>
                         <h4>Financial Engineering & Derivatives</h4>
                         <p>Columbia University</p>
@@ -470,8 +556,7 @@
                     <span class="tag-badge tag-digital">Verified <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
                 </a>
 
-                <!-- Link 3: Geneva Certificate -->
-                <a href="https://your-actual-certificate-link-3.com" target="_blank" class="cert-item">
+                <a href="https://your-actual-certificate-link-3.com" target="_blank" class="list-item">
                     <div>
                         <h4>Portfolio & Quantitative Risk Management</h4>
                         <p>University of Geneva</p>
@@ -479,33 +564,74 @@
                     <span class="tag-badge tag-digital">Verified <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
                 </a>
 
-                <!-- Link 4: Institutional Academic Merit -->
-                <a href="https://your-actual-certificate-link-4.com" target="_blank" class="cert-item">
+                <a href="https://your-actual-certificate-link-4.com" target="_blank" class="list-item">
                     <div>
                         <h4>Institutional Academic Merit</h4>
                         <p>Academic Excellence Honor</p>
                     </div>
                     <span class="tag-badge tag-inst">Institutional <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
                 </a>
+            </div>
+        </div>
+    </div>
 
+    <!-- 02. RESEARCH MODAL POPUP -->
+    <div id="researchModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 style="color: #FF5722;"><i class="fa-solid fa-microscope"></i> Research Papers & Articles</h2>
+                <span class="close-btn" onclick="closeModal('researchModal')">&times;</span>
+            </div>
+            
+            <div class="item-list">
+                <a href="research-1.html" class="list-item">
+                    <div>
+                        <h4>RBI Macro Policy & Liquidity Analysis</h4>
+                        <p>Published: Aug 2026 • Macroeconomics</p>
+                    </div>
+                    <span class="tag-badge tag-digital">Read <i class="fa-solid fa-arrow-right" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
+                </a>
+
+                <a href="research-2.html" class="list-item">
+                    <div>
+                        <h4>Quantitative Volatility Modeling (3D IV)</h4>
+                        <p>Published: Jul 2026 • Financial Engineering</p>
+                    </div>
+                    <span class="tag-badge tag-digital">Read <i class="fa-solid fa-arrow-right" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
+                </a>
+
+                <a href="research-3.html" class="list-item">
+                    <div>
+                        <h4>Algorithmic Trading Strategies in Indian Markets</h4>
+                        <p>Published: Jun 2026 • Algorithmic Trading</p>
+                    </div>
+                    <span class="tag-badge tag-digital">Read <i class="fa-solid fa-arrow-right" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
+                </a>
+
+                <a href="research-4.html" class="list-item">
+                    <div>
+                        <h4>Global Monetary Policy Spillovers on Emerging Economies</h4>
+                        <p>Published: May 2026 • Global Economics</p>
+                    </div>
+                    <span class="tag-badge tag-digital">Read <i class="fa-solid fa-arrow-right" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
+                </a>
             </div>
         </div>
     </div>
 
     <!-- JAVASCRIPT -->
     <script>
-        function openModal() { 
-            document.getElementById('certModal').style.display = 'block'; 
+        function openModal(modalId) { 
+            document.getElementById(modalId).style.display = 'block'; 
         }
 
-        function closeModal() { 
-            document.getElementById('certModal').style.display = 'none'; 
+        function closeModal(modalId) { 
+            document.getElementById(modalId).style.display = 'none'; 
         }
 
         window.onclick = function(event) {
-            let modal = document.getElementById('certModal');
-            if (event.target == modal) {
-                modal.style.display = "none";
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
             }
         }
     </script>
