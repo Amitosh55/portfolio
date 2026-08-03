@@ -21,6 +21,7 @@
             --accent-gold: #F59E0B;
             --accent-blue: #38BDF8;
             --accent-red: #EF4444;
+            --accent-orange: #FF5722;
         }
 
         * { 
@@ -79,7 +80,37 @@
             margin-top: 4px;
         }
 
-        /* STRATEGIX FEATURED HEADER BUTTON - CUSTOM PLAYFAIR & ALIGNMENT */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* BLOG BUTTON IN HEADER */
+        .blog-header-btn {
+            background: rgba(18, 27, 40, 0.95);
+            border: 1px solid rgba(255, 87, 34, 0.45);
+            padding: 12px 18px;
+            border-radius: 18px;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 87, 34, 0.15);
+        }
+
+        .blog-header-btn:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 20px rgba(255, 87, 34, 0.35);
+            background: rgba(26, 39, 58, 0.95);
+        }
+
+        /* STRATEGIX FEATURED HEADER BUTTON */
         .strategix-badge-btn {
             background: rgba(18, 27, 40, 0.95);
             border: 1px solid rgba(239, 68, 68, 0.45);
@@ -89,7 +120,7 @@
             color: var(--text-main);
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center aligns tagline and title box */
+            align-items: center;
             justify-content: center;
             gap: 4px;
             transition: all 0.3s ease;
@@ -105,7 +136,7 @@
 
         .brand-top-row {
             display: flex;
-            align-items: flex-end; /* Bottom Align Icon and Brand Name */
+            align-items: flex-end;
             gap: 10px;
         }
 
@@ -115,7 +146,7 @@
             background-color: var(--accent-red);
             border-radius: 50%;
             display: inline-block;
-            margin-bottom: 5px; /* Slight offset for perfect visual baseline */
+            margin-bottom: 5px;
             animation: pulse-red 1.5s infinite;
         }
 
@@ -126,8 +157,8 @@
         }
 
         .badge-text h4 {
-            font-family: 'Playfair Display', serif; /* Custom Font */
-            font-size: 1.5rem; /* Bigger Strategix Font */
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
             font-weight: 800;
             line-height: 1;
             color: #FFF;
@@ -139,11 +170,11 @@
             color: var(--text-muted);
             letter-spacing: 0.3px;
             font-weight: 500;
-            text-align: center; /* Center aligned text */
+            text-align: center;
             margin-top: 2px;
         }
 
-        /* HERO BANNER WITH 16:9 VIDEO */
+        /* HERO BANNER WITH 16:9 VIDEO (CLEANED UP) */
         .hero-banner {
             width: 100%;
             background: var(--card-bg);
@@ -152,7 +183,6 @@
             padding: 24px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
             backdrop-filter: blur(12px);
             box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
         }
@@ -179,26 +209,6 @@
             font-size: 0.95rem; 
             color: var(--text-muted); 
             font-weight: 500; 
-        }
-
-        .pills-row { 
-            display: flex; 
-            gap: 10px; 
-            flex-wrap: wrap; 
-            align-items: center;
-        }
-        
-        .pill {
-            background: rgba(56, 189, 248, 0.08);
-            border: 1px solid rgba(56, 189, 248, 0.18);
-            color: var(--accent-blue);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            display: flex; 
-            align-items: center; 
-            gap: 8px;
         }
 
         /* BASE 6-CARDS EQUAL GRID */
@@ -248,6 +258,7 @@
         .cert-bg { background: rgba(245, 158, 11, 0.15); color: #F59E0B; }
         .hackerrank-bg { background: rgba(46, 196, 182, 0.15); color: #2EC4B6; }
         .github-bg { background: rgba(45, 186, 78, 0.15); color: #2DBA4E; }
+
         .blog-bg { background: rgba(255, 87, 34, 0.15); color: #FF5722; }
         .linkedin-bg { background: rgba(10, 102, 194, 0.15); color: #0A66C2; }
         .resume-bg { background: rgba(225, 29, 72, 0.15); color: #E11D48; }
@@ -264,20 +275,39 @@
             font-weight: 500; 
         }
 
-        /* FOOTER */
+        /* FOOTER - FLEXBOX SPLIT LAYOUT */
         footer {
             margin-top: 30px;
             margin-bottom: 10px;
-            text-align: center;
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-size: 0.75rem;
             color: var(--text-muted);
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 16px;
         }
 
-        footer span {
+        footer .footer-left span {
             color: var(--text-main);
             font-weight: 700;
+        }
+
+        footer .footer-right a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+            text-transform: none;
+        }
+
+        footer .footer-right a:hover {
+            color: var(--text-main);
+            text-decoration: underline;
         }
 
         /* MODAL POPUP STYLES */
@@ -396,6 +426,10 @@
                 align-items: center;
                 text-align: center;
             }
+            .header-actions {
+                width: 100%;
+                justify-content: center;
+            }
             .base-grid { 
                 grid-template-columns: repeat(3, 1fr); 
                 gap: 8px; 
@@ -418,9 +452,10 @@
             .card-info p { 
                 font-size: 0.58rem; 
             }
-            .pill { 
-                padding: 5px 10px; 
-                font-size: 0.68rem; 
+            footer {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
             }
         }
     </style>
@@ -436,32 +471,34 @@
                 <p>A TECHNO-ECONOMIST</p>
             </div>
 
-            <!-- CUSTOM STRATEGIX LOGO BADGE -->
-            <a href="https://strategix-671509941714.us-west1.run.app" target="_blank" class="strategix-badge-btn">
-                <div class="brand-top-row">
-                    <i class="fa-solid fa-chart-line" style="color: var(--accent-red); font-size: 1.6rem; margin-bottom: 2px;"></i>
-                    <div class="badge-text">
-                        <h4>Strategix</h4>
+            <div class="header-actions">
+                <!-- IN-BUILT BLOG LINK IN HEADER -->
+                <a href="/blog" class="blog-header-btn">
+                    <i class="fa-solid fa-book-open" style="color: var(--accent-orange);"></i>
+                    <span>Blog</span>
+                </a>
+
+                <!-- CUSTOM STRATEGIX LOGO BADGE -->
+                <a href="https://strategix-671509941714.us-west1.run.app" target="_blank" class="strategix-badge-btn">
+                    <div class="brand-top-row">
+                        <i class="fa-solid fa-chart-line" style="color: var(--accent-red); font-size: 1.6rem; margin-bottom: 2px;"></i>
+                        <div class="badge-text">
+                            <h4>Strategix</h4>
+                        </div>
+                        <span class="live-dot"></span>
                     </div>
-                    <span class="live-dot"></span>
-                </div>
-                <div class="badge-text">
-                    <p>Live Stream - financial news app</p>
-                </div>
-            </a>
+                    <div class="badge-text">
+                        <p>Live Stream - financial news app</p>
+                    </div>
+                </a>
+            </div>
         </header>
 
-        <!-- TOP BANNER -->
+        <!-- TOP BANNER (CLEANED UP - NO PILLS) -->
         <div class="hero-banner">
             <div class="video-box">
                 <i class="fa-brands fa-youtube" style="color: #FF0000; font-size: 3.5rem;"></i>
                 <p>YouTube Digital Profile AV</p>
-            </div>
-
-            <div class="pills-row">
-                <span class="pill"><i class="fa-solid fa-building-columns"></i> RBI Macro Analysis</span>
-                <span class="pill"><i class="fa-solid fa-graduation-cap"></i> ISB Certified</span>
-                <span class="pill"><i class="fa-solid fa-chart-line"></i> Quant IV 3D</span>
             </div>
         </div>
 
@@ -495,7 +532,7 @@
                 </div>
             </a>
 
-            <!-- 04. Research (Modal Trigger for Dummy Research Pages) -->
+            <!-- 04. Research (Modal Trigger for Articles/Blogs) -->
             <div class="app-card" onclick="openModal('researchModal')">
                 <div class="icon-wrapper blog-bg"><i class="fa-solid fa-newspaper"></i></div>
                 <div class="card-info">
@@ -526,9 +563,14 @@
 
     </div>
 
-    <!-- FOOTER -->
+    <!-- NEW SPLIT FOOTER -->
     <footer>
-        DESIGNED BY <span>AMITOSH KUMAR</span>
+        <div class="footer-left">
+            DESIGNED BY <span>AMITOSH KUMAR</span>
+        </div>
+        <div class="footer-right">
+            Contact: <a href="mailto:amitoshchandra1@gmail.com?subject=website enquiry">amitoshchandra1@gmail.com</a>
+        </div>
     </footer>
 
     <!-- 01. CREDENTIALS MODAL POPUP -->
@@ -575,7 +617,7 @@
         </div>
     </div>
 
-    <!-- 02. RESEARCH MODAL POPUP -->
+    <!-- 02. RESEARCH MODAL POPUP (LINKED TO IN-BUILT NEXT.JS /BLOG ROUTES) -->
     <div id="researchModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -584,7 +626,7 @@
             </div>
             
             <div class="item-list">
-                <a href="research-1.html" class="list-item">
+                <a href="/blog/rbi-macro-policy" class="list-item">
                     <div>
                         <h4>RBI Macro Policy & Liquidity Analysis</h4>
                         <p>Published: Aug 2026 • Macroeconomics</p>
@@ -592,7 +634,7 @@
                     <span class="tag-badge tag-digital">Read <i class="fa-solid fa-arrow-right" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
                 </a>
 
-                <a href="research-2.html" class="list-item">
+                <a href="/blog/quantitative-volatility" class="list-item">
                     <div>
                         <h4>Quantitative Volatility Modeling (3D IV)</h4>
                         <p>Published: Jul 2026 • Financial Engineering</p>
@@ -600,7 +642,7 @@
                     <span class="tag-badge tag-digital">Read <i class="fa-solid fa-arrow-right" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
                 </a>
 
-                <a href="research-3.html" class="list-item">
+                <a href="/blog/algorithmic-trading-strategies" class="list-item">
                     <div>
                         <h4>Algorithmic Trading Strategies in Indian Markets</h4>
                         <p>Published: Jun 2026 • Algorithmic Trading</p>
@@ -608,7 +650,7 @@
                     <span class="tag-badge tag-digital">Read <i class="fa-solid fa-arrow-right" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
                 </a>
 
-                <a href="research-4.html" class="list-item">
+                <a href="/blog/global-monetary-policy" class="list-item">
                     <div>
                         <h4>Global Monetary Policy Spillovers on Emerging Economies</h4>
                         <p>Published: May 2026 • Global Economics</p>
