@@ -7,18 +7,18 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* iOS Dark Mode Palette */
+            /* Pure OLED Black */
             --bg-base: #000000;
             --text-main: #FFFFFF;
-            --text-muted: rgba(235, 235, 245, 0.6); /* iOS secondary label */
+            --text-muted: rgba(235, 235, 245, 0.6); 
             
             /* Liquid Glass Variables */
-            --glass-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
-            --glass-hover: linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+            --glass-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            --glass-hover: linear-gradient(145deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.04) 100%);
             --glass-border: rgba(255, 255, 255, 0.1);
             --glass-highlight: rgba(255, 255, 255, 0.2);
             --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
@@ -27,22 +27,19 @@
             --ios-blue: #0A84FF;
             --ios-orange: #FF9F0A;
             --ios-red: #FF453A;
-            --ios-green: #32D74B;
-            --ios-teal: #64D2FF;
-            --ios-indigo: #5E5CE6;
         }
 
         * { 
             box-sizing: border-box; 
             margin: 0; 
             padding: 0; 
-            -webkit-tap-highlight-color: transparent; /* Remove mobile tap highlight */
+            -webkit-tap-highlight-color: transparent; 
         }
 
         body {
             min-height: 100vh;
             width: 100vw;
-            background-color: var(--bg-base);
+            background-color: var(--bg-base); /* Completely Black */
             color: var(--text-main);
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
@@ -50,36 +47,6 @@
             align-items: center;
             overflow-x: hidden;
             padding: 40px 20px 20px 20px;
-            position: relative;
-        }
-
-        /* Ambient glowing orbs for the liquid glass to refract */
-        body::before, body::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            filter: blur(120px);
-            z-index: -1;
-            opacity: 0.4;
-            animation: float 10s ease-in-out infinite alternate;
-        }
-        body::before {
-            top: -10%;
-            left: 10%;
-            background: rgba(10, 132, 255, 0.4); /* Blue glow */
-        }
-        body::after {
-            bottom: 20%;
-            right: 0%;
-            background: rgba(255, 69, 58, 0.3); /* Red glow */
-            animation-delay: -5s;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(30px) scale(1.1); }
         }
 
         .main-container {
@@ -113,9 +80,10 @@
         }
         
         .header-title h1 { 
-            font-size: clamp(2.2rem, 3.5vw, 3.2rem); 
-            font-weight: 800; 
-            letter-spacing: -1px;
+            font-family: 'Playfair Display', serif; /* Classy Font */
+            font-size: clamp(2.5rem, 4vw, 3.8rem); 
+            font-weight: 600; 
+            letter-spacing: -0.5px;
             line-height: 1.1;
         }
         
@@ -126,6 +94,7 @@
             font-weight: 600; 
             text-transform: uppercase;
             margin-top: 8px;
+            margin-left: 4px;
         }
 
         .header-actions {
@@ -194,10 +163,12 @@
         }
 
         .badge-text h4 {
-            font-size: 1.2rem;
-            font-weight: 800;
+            font-family: 'Playfair Display', serif; /* Classy Font */
+            font-size: 1.4rem;
+            font-style: italic;
+            font-weight: 700;
             line-height: 1;
-            letter-spacing: -0.3px;
+            letter-spacing: 0.5px;
         }
 
         .badge-text p {
@@ -251,7 +222,7 @@
         }
 
         .app-card {
-            border-radius: 28px; /* App icon / Control center radius */
+            border-radius: 28px; 
             padding: 24px 12px;
             display: flex;
             flex-direction: column;
@@ -277,7 +248,7 @@
         .icon-wrapper {
             width: 54px; 
             height: 54px;
-            border-radius: 22.5%; /* Continuous curve illusion */
+            border-radius: 22.5%; 
             display: flex; 
             align-items: center; 
             justify-content: center;
@@ -334,13 +305,13 @@
         }
         footer .footer-right a:hover { color: var(--ios-blue); }
 
-        /* MODALS (iOS Bottom Sheet / Center Modal) */
+        /* MODALS */
         .modal {
             display: none; 
             position: fixed;
             top: 0; left: 0; 
             width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             z-index: 1000; 
@@ -646,7 +617,6 @@
         function openModal(modalId) { 
             const modal = document.getElementById(modalId);
             modal.style.display = 'block';
-            // Slight delay to allow display:block to apply before animating opacity
             setTimeout(() => {
                 modal.classList.add('show');
             }, 10);
@@ -655,7 +625,6 @@
         function closeModal(modalId) { 
             const modal = document.getElementById(modalId);
             modal.classList.remove('show');
-            // Wait for transition to finish before hiding
             setTimeout(() => {
                 modal.style.display = 'none';
             }, 300);
