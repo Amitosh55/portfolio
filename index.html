@@ -6,8 +6,8 @@
     <title>Amitosh Kumar | Economics | Finance | Policy</title>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Added weight 300 for the slim classy bio text -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -177,40 +177,40 @@
             font-weight: 500;
         }
 
-        /* HERO BANNER */
-        .hero-banner {
+        /* BIO BANNER */
+        .bio-banner {
             width: 100%;
             border-radius: 32px;
-            padding: 24px;
+            padding: 32px;
             display: flex;
             flex-direction: column;
         }
 
-        .video-box {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .bio-text {
             display: flex;
-            align-items: center;
-            justify-content: center;
             flex-direction: column;
-            gap: 16px;
-            transition: all 0.3s ease;
-            box-shadow: inset 0 0 40px rgba(0,0,0,0.5);
-            cursor: pointer;
+            gap: 18px;
         }
 
-        .video-box:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.02);
+        .bio-text p {
+            /* Slim, classy font styling */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 300; 
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: rgba(245, 245, 245, 0.85); /* Slightly softened white */
+            letter-spacing: 0.4px;
+            text-align: justify;
+            text-justify: inter-word;
         }
-
-        .video-box p { 
-            font-size: 1rem; 
-            color: var(--text-muted); 
-            font-weight: 600; 
+        
+        /* Highlight the name in the first paragraph using the Playfair font */
+        .bio-text p strong.name-highlight {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: var(--text-main);
+            letter-spacing: 0px;
         }
 
         /* iOS CONTROL CENTER STYLE GRID */
@@ -420,7 +420,8 @@
             .header-actions { flex-direction: column; width: 100%; }
             .glass-btn { width: 100%; justify-content: center; }
             .base-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-            .hero-banner { padding: 16px; border-radius: 24px; }
+            .bio-banner { padding: 24px; border-radius: 24px; }
+            .bio-text p { font-size: 0.85rem; text-align: left; }
             .app-card { padding: 20px 10px; border-radius: 24px; }
             .icon-wrapper { width: 48px; height: 48px; font-size: 1.4rem; }
             footer { flex-direction: column; gap: 12px; text-align: center; }
@@ -462,11 +463,12 @@
             </div>
         </header>
 
-        <!-- HERO BANNER -->
-        <div class="glass-panel hero-banner">
-            <div class="video-box">
-                <i class="fa-brands fa-apple" style="font-size: 3rem; color: rgba(255,255,255,0.9);"></i>
-                <p>Digital Profile AV</p>
+        <!-- BIO BANNER (Replaced Digital AV Profile) -->
+        <div class="glass-panel bio-banner">
+            <div class="bio-text">
+                <p><strong class="name-highlight">Amitosh Kumar</strong> is currently pursuing an M.Sc. in Economics at Jaypee Institute of Information Technology (JIIT), where his academic interests focus on macroeconomics, financial markets, and quantitative research. He is passionate about understanding the intersection of economic theory, data-driven analysis, and investment strategy.</p>
+                <p>Previously, Amitosh worked as an Advisory and Fundamental Analyst Executive at Mastertrust, contributing to equity research, macroeconomic analysis, and investment advisory. His experience involved evaluating company fundamentals, interpreting economic developments, and translating complex market data into actionable insights. He also worked on automating economic data workflows, reflecting his interest in combining analytical rigor with technology to enhance research efficiency.</p>
+                <p>With a strong foundation in economic analysis and financial research, Amitosh is particularly interested in macro-financial dynamics, capital markets, sustainable finance, and empirical research. He aspires to contribute to evidence-based research that bridges academic insight with practical applications in finance and public policy.</p>
             </div>
         </div>
 
