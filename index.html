@@ -245,6 +245,7 @@
             transform: scale(0.94);
         }
 
+        /* TRANSPARENT GLASS ICONS */
         .icon-wrapper {
             width: 54px; 
             height: 54px;
@@ -252,19 +253,22 @@
             display: flex; 
             align-items: center; 
             justify-content: center;
-            font-size: 1.6rem; 
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: inset 0 1px 1px rgba(255,255,255,0.2);
+            font-size: 1.6rem;
+            color: rgba(255, 255, 255, 0.9);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
         }
 
-        /* Vibrant iOS App Colors */
-        .app-card:nth-child(1) .icon-wrapper { background: linear-gradient(135deg, #FFD60A, #FF9F0A); color: white; }
-        .app-card:nth-child(2) .icon-wrapper { background: linear-gradient(135deg, #32D74B, #28CD41); color: white; }
-        .app-card:nth-child(3) .icon-wrapper { background: linear-gradient(135deg, #64D2FF, #0A84FF); color: white; }
-        .app-card:nth-child(4) .icon-wrapper { background: linear-gradient(135deg, #FF453A, #FF3B30); color: white; }
-        .app-card:nth-child(5) .icon-wrapper { background: linear-gradient(135deg, #5E5CE6, #5856D6); color: white; }
-        .app-card:nth-child(6) .icon-wrapper { background: linear-gradient(135deg, #BF5AF2, #AF52DE); color: white; }
+        .app-card:hover .icon-wrapper {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+            color: #FFFFFF;
+        }
 
         .card-info h3 { 
             font-size: 0.9rem; 
@@ -466,7 +470,7 @@
         <!-- BIO BANNER (Replaced Digital AV Profile) -->
         <div class="glass-panel bio-banner">
             <div class="bio-text">
-                <p> Amitosh Kumar is currently pursuing an M.Sc. in Economics at Jaypee Institute of Information Technology (JIIT), where his academic interests focus on macroeconomics, financial markets, and quantitative research. He is passionate about understanding the intersection of economic theory, data-driven analysis, and investment strategy.</p>
+                <p> <strong class="name-highlight">Amitosh Kumar</strong> is currently pursuing an M.Sc. in Economics at Jaypee Institute of Information Technology (JIIT), where his academic interests focus on macroeconomics, financial markets, and quantitative research. He is passionate about understanding the intersection of economic theory, data-driven analysis, and investment strategy.</p>
                 <p>Previously, Amitosh worked as an Advisory and Fundamental Analyst Executive at Mastertrust, contributing to equity research, macroeconomic analysis, and investment advisory. His experience involved evaluating company fundamentals, interpreting economic developments, and translating complex market data into actionable insights. He also worked on automating economic data workflows, reflecting his interest in combining analytical rigor with technology to enhance research efficiency.</p>
                 <p>With a strong foundation in economic analysis and financial research, Amitosh is particularly interested in macro-financial dynamics, capital markets, sustainable finance, and empirical research. He aspires to contribute to evidence-based research that bridges academic insight with practical applications in finance and public policy.</p>
             </div>
