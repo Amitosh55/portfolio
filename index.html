@@ -3,45 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Amitosh Kumar | Economics | Finance | Policy </title>
+    <title>Amitosh Kumar | Economics | Finance | Policy</title>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-body: #000000;
-            --card-bg: rgba(30, 40, 40, 0.85);
-            --card-hover: rgba(26, 39, 58, 0.95);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(56, 189, 248, 0.3);
-            --text-main: #F8FAFC;
-            --text-muted: #94A3B8;
-            --accent-gold: #F59E0B;
-            --accent-blue: #38BDF8;
-            --accent-red: #EF4444;
-            --accent-orange: #FF5722;
+            /* iOS Dark Mode Palette */
+            --bg-base: #000000;
+            --text-main: #FFFFFF;
+            --text-muted: rgba(235, 235, 245, 0.6); /* iOS secondary label */
+            
+            /* Liquid Glass Variables */
+            --glass-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
+            --glass-hover: linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-highlight: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+            
+            /* iOS System Colors */
+            --ios-blue: #0A84FF;
+            --ios-orange: #FF9F0A;
+            --ios-red: #FF453A;
+            --ios-green: #32D74B;
+            --ios-teal: #64D2FF;
+            --ios-indigo: #5E5CE6;
         }
 
         * { 
             box-sizing: border-box; 
             margin: 0; 
             padding: 0; 
+            -webkit-tap-highlight-color: transparent; /* Remove mobile tap highlight */
         }
 
         body {
             min-height: 100vh;
             width: 100vw;
-            background-color: var(--bg-body);
+            background-color: var(--bg-base);
             color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between;
             overflow-x: hidden;
-            padding: 30px 20px 20px 20px;
+            padding: 40px 20px 20px 20px;
+            position: relative;
+        }
+
+        /* Ambient glowing orbs for the liquid glass to refract */
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 10s ease-in-out infinite alternate;
+        }
+        body::before {
+            top: -10%;
+            left: 10%;
+            background: rgba(10, 132, 255, 0.4); /* Blue glow */
+        }
+        body::after {
+            bottom: 20%;
+            right: 0%;
+            background: rgba(255, 69, 58, 0.3); /* Red glow */
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(30px) scale(1.1); }
         }
 
         .main-container {
@@ -50,7 +88,19 @@
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 32px;
+            flex: 1;
+        }
+
+        /* LIQUID GLASS UTILITY CLASS */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-top: 1px solid var(--glass-highlight);
+            border-left: 1px solid var(--glass-highlight);
+            box-shadow: var(--glass-shadow);
         }
 
         /* HEADER */
@@ -58,227 +108,209 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 4px;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 20px;
         }
         
         .header-title h1 { 
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 3.2vw, 3rem); 
+            font-size: clamp(2.2rem, 3.5vw, 3.2rem); 
             font-weight: 800; 
-            color: #FFFFFF; 
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
+            line-height: 1.1;
         }
         
         .header-title p { 
-            font-size: clamp(0.7rem, 0.9vw, 0.82rem); 
-            letter-spacing: 3px; 
-            color: var(--accent-blue); 
-            font-weight: 700; 
+            font-size: clamp(0.75rem, 1vw, 0.85rem); 
+            letter-spacing: 2px; 
+            color: var(--text-muted); 
+            font-weight: 600; 
             text-transform: uppercase;
-            margin-top: 4px;
+            margin-top: 8px;
         }
 
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
         }
 
-        /* BLOG BUTTON IN HEADER */
-        .blog-header-btn {
-            background: rgba(18, 27, 40, 0.95);
-            border: 1px solid rgba(255, 87, 34, 0.45);
-            padding: 12px 18px;
-            border-radius: 18px;
+        /* BUTTONS (Live Activity / Dynamic Island vibe) */
+        .glass-btn {
             text-decoration: none;
             color: var(--text-main);
+            border-radius: 999px; /* Pill shape */
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-btn:hover {
+            background: var(--glass-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .glass-btn:active {
+            transform: scale(0.96);
+        }
+
+        .blog-header-btn {
+            padding: 14px 22px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.85rem;
+            gap: 10px;
+            font-size: 0.9rem;
             font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(255, 87, 34, 0.15);
         }
 
-        .blog-header-btn:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent-orange);
-            box-shadow: 0 0 20px rgba(255, 87, 34, 0.35);
-            background: rgba(26, 39, 58, 0.95);
-        }
-
-        /* STRATEGIX FEATURED HEADER BUTTON */
         .strategix-badge-btn {
-            background: rgba(18, 27, 40, 0.95);
-            border: 1px solid rgba(239, 68, 68, 0.45);
             padding: 12px 24px;
-            border-radius: 18px;
-            text-decoration: none;
-            color: var(--text-main);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 4px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
-        }
-
-        .strategix-badge-btn:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent-red);
-            box-shadow: 0 0 25px rgba(239, 68, 68, 0.4);
-            background: rgba(26, 39, 58, 0.95);
         }
 
         .brand-top-row {
             display: flex;
-            align-items: flex-end;
-            gap: 10px;
+            align-items: center;
+            gap: 8px;
         }
 
         .live-dot {
-            width: 10px;
-            height: 10px;
-            background-color: var(--accent-red);
+            width: 8px;
+            height: 8px;
+            background-color: var(--ios-red);
             border-radius: 50%;
             display: inline-block;
-            margin-bottom: 5px;
-            animation: pulse-red 1.5s infinite;
+            box-shadow: 0 0 10px var(--ios-red);
+            animation: pulse-red 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
         }
 
         @keyframes pulse-red {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(1.3); }
-            100% { opacity: 1; transform: scale(1); }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.2); }
         }
 
         .badge-text h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 800;
             line-height: 1;
-            color: #FFF;
-            letter-spacing: 0.5px;
+            letter-spacing: -0.3px;
         }
 
         .badge-text p {
-            font-size: 0.72rem; 
+            font-size: 0.7rem; 
             color: var(--text-muted);
-            letter-spacing: 0.3px;
             font-weight: 500;
-            text-align: center;
-            margin-top: 2px;
         }
 
-        /* HERO BANNER WITH 16:9 VIDEO (CLEANED UP) */
+        /* HERO BANNER */
         .hero-banner {
             width: 100%;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
+            border-radius: 32px;
             padding: 24px;
             display: flex;
             flex-direction: column;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
         }
 
         .video-box {
             width: 100%;
             aspect-ratio: 16 / 9;
-            background: rgba(8, 13, 20, 0.6);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            gap: 12px;
-            transition: border-color 0.3s ease;
+            gap: 16px;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.5);
+            cursor: pointer;
         }
 
         .video-box:hover {
-            border-color: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.02);
         }
 
         .video-box p { 
-            font-size: 0.95rem; 
+            font-size: 1rem; 
             color: var(--text-muted); 
-            font-weight: 500; 
+            font-weight: 600; 
         }
 
-        /* BASE 6-CARDS EQUAL GRID */
+        /* iOS CONTROL CENTER STYLE GRID */
         .base-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 16px;
+            gap: 20px;
             width: 100%;
         }
 
         .app-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 20px 10px;
+            border-radius: 28px; /* App icon / Control center radius */
+            padding: 24px 12px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            gap: 12px;
+            gap: 16px;
             text-decoration: none;
             color: var(--text-main);
             cursor: pointer;
-            backdrop-filter: blur(12px);
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .app-card:hover {
-            background: var(--card-hover);
-            transform: translateY(-5px);
-            border-color: var(--border-hover);
-            box-shadow: 0 16px 30px -8px rgba(0, 0, 0, 0.6);
+            background: var(--glass-hover);
+            transform: translateY(-4px);
+        }
+        
+        .app-card:active {
+            transform: scale(0.94);
         }
 
         .icon-wrapper {
-            width: 46px; 
-            height: 46px;
-            border-radius: 14px;
+            width: 54px; 
+            height: 54px;
+            border-radius: 22.5%; /* Continuous curve illusion */
             display: flex; 
             align-items: center; 
             justify-content: center;
-            font-size: 1.35rem; 
+            font-size: 1.6rem; 
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.2);
         }
 
-        /* Colors */
-        .cert-bg { background: rgba(245, 158, 11, 0.15); color: #F59E0B; }
-        .hackerrank-bg { background: rgba(46, 196, 182, 0.15); color: #2EC4B6; }
-        .github-bg { background: rgba(45, 186, 78, 0.15); color: #2DBA4E; }
-
-        .blog-bg { background: rgba(255, 87, 34, 0.15); color: #FF5722; }
-        .linkedin-bg { background: rgba(10, 102, 194, 0.15); color: #0A66C2; }
-        .resume-bg { background: rgba(225, 29, 72, 0.15); color: #E11D48; }
+        /* Vibrant iOS App Colors */
+        .app-card:nth-child(1) .icon-wrapper { background: linear-gradient(135deg, #FFD60A, #FF9F0A); color: white; }
+        .app-card:nth-child(2) .icon-wrapper { background: linear-gradient(135deg, #32D74B, #28CD41); color: white; }
+        .app-card:nth-child(3) .icon-wrapper { background: linear-gradient(135deg, #64D2FF, #0A84FF); color: white; }
+        .app-card:nth-child(4) .icon-wrapper { background: linear-gradient(135deg, #FF453A, #FF3B30); color: white; }
+        .app-card:nth-child(5) .icon-wrapper { background: linear-gradient(135deg, #5E5CE6, #5856D6); color: white; }
+        .app-card:nth-child(6) .icon-wrapper { background: linear-gradient(135deg, #BF5AF2, #AF52DE); color: white; }
 
         .card-info h3 { 
-            font-size: 0.85rem; 
+            font-size: 0.9rem; 
             font-weight: 700; 
+            letter-spacing: -0.2px;
         }
         
         .card-info p { 
-            font-size: 0.65rem; 
+            font-size: 0.7rem; 
             color: var(--text-muted); 
-            margin-top: 3px; 
-            font-weight: 500; 
+            margin-top: 4px; 
+            font-weight: 600; 
         }
 
-        /* FOOTER - FLEXBOX SPLIT LAYOUT */
+        /* FOOTER */
         footer {
-            margin-top: 30px;
-            margin-bottom: 10px;
+            margin-top: 40px;
             width: 100%;
             max-width: 900px;
             display: flex;
@@ -286,177 +318,142 @@
             align-items: center;
             font-size: 0.75rem;
             color: var(--text-muted);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 16px;
-        }
-
-        footer .footer-left span {
-            color: var(--text-main);
-            font-weight: 700;
-        }
-
-        footer .footer-right a {
-            color: var(--accent-blue);
-            text-decoration: none;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 24px 0;
+        }
+
+        footer .footer-left span { color: var(--text-main); font-weight: 800; }
+        
+        footer .footer-right a {
+            color: var(--text-main);
+            text-decoration: none;
             transition: color 0.2s ease;
             text-transform: none;
         }
+        footer .footer-right a:hover { color: var(--ios-blue); }
 
-        footer .footer-right a:hover {
-            color: var(--text-main);
-            text-decoration: underline;
-        }
-
-        /* MODAL POPUP STYLES */
+        /* MODALS (iOS Bottom Sheet / Center Modal) */
         .modal {
             display: none; 
             position: fixed;
-            top: 0; 
-            left: 0; 
-            width: 100vw; 
-            height: 100vh;
-            background: rgba(8, 13, 20, 0.92);
-            backdrop-filter: blur(16px);
+            top: 0; left: 0; 
+            width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 1000; 
             padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.show {
+            opacity: 1;
         }
 
         .modal-content {
-            max-width: 520px; 
+            max-width: 540px; 
             margin: 10vh auto;
-            background: #121B28; 
-            border: 1px solid var(--border-color);
-            border-radius: 20px; 
-            padding: 24px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            border-radius: 32px; 
+            padding: 32px;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0) scale(1);
         }
 
         .modal-header { 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            margin-bottom: 20px; 
+            margin-bottom: 24px; 
         }
         
         .modal-header h2 { 
-            font-size: 1.15rem; 
-            color: var(--accent-gold); 
+            font-size: 1.3rem; 
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
         
         .close-btn { 
-            font-size: 1.4rem; 
-            color: var(--text-muted); 
+            width: 32px;
+            height: 32px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem; 
+            color: var(--text-main); 
             cursor: pointer; 
-            transition: color 0.2s ease;
+            transition: all 0.2s ease;
         }
 
-        .close-btn:hover {
-            color: var(--text-main);
-        }
+        .close-btn:hover { background: rgba(255,255,255,0.2); transform: scale(1.05); }
+        .close-btn:active { transform: scale(0.95); }
 
-        .item-list { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 10px; 
-        }
+        .item-list { display: flex; flex-direction: column; gap: 12px; }
         
         .list-item {
-            background: #080D14; 
-            border: 1px solid var(--border-color);
-            padding: 12px 14px; 
-            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.3); 
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 16px 20px; 
+            border-radius: 20px;
             display: flex; 
             justify-content: space-between; 
             align-items: center;
             text-decoration: none;
-            transition: all 0.25s ease;
+            transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .list-item:hover {
-            background: rgba(26, 39, 58, 0.95);
-            border-color: rgba(56, 189, 248, 0.4);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
             transform: translateX(4px);
         }
         
-        .list-item h4 { 
-            font-size: 0.85rem; 
-            color: #FFF; 
-        }
-        
-        .list-item p { 
-            font-size: 0.7rem; 
-            color: var(--text-muted); 
-        }
+        .list-item h4 { font-size: 0.95rem; font-weight: 600; color: #FFF; margin-bottom: 4px;}
+        .list-item p { font-size: 0.75rem; color: var(--text-muted); font-weight: 500;}
         
         .tag-badge { 
-            font-size: 0.65rem; 
-            padding: 3px 8px; 
-            border-radius: 6px; 
+            font-size: 0.7rem; 
+            padding: 6px 10px; 
+            border-radius: 10px; 
             font-weight: 700; 
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
         
-        .tag-digital { 
-            background: rgba(56, 189, 248, 0.15); 
-            color: var(--accent-blue); 
-        }
-        
-        .tag-inst { 
-            background: rgba(245, 158, 11, 0.15); 
-            color: var(--accent-gold); 
-        }
+        .tag-digital { color: var(--ios-blue); }
+        .tag-inst { color: var(--ios-orange); }
 
         /* RESPONSIVE BREAKPOINTS */
         @media (max-width: 1024px) {
-            .base-grid { 
-                grid-template-columns: repeat(3, 1fr); 
-                gap: 14px; 
-            }
+            .base-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         @media (max-width: 600px) {
-            body { 
-                padding: 16px 12px; 
-            }
-            header {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .header-actions {
-                width: 100%;
-                justify-content: center;
-            }
-            .base-grid { 
-                grid-template-columns: repeat(3, 1fr); 
-                gap: 8px; 
-            }
-            .hero-banner { 
-                padding: 14px; 
-            }
-            .app-card { 
-                padding: 10px 4px; 
-                gap: 6px; 
-            }
-            .icon-wrapper { 
-                width: 36px; 
-                height: 36px; 
-                font-size: 1.1rem; 
-            }
-            .card-info h3 { 
-                font-size: 0.72rem; 
-            }
-            .card-info p { 
-                font-size: 0.58rem; 
-            }
-            footer {
-                flex-direction: column;
-                gap: 8px;
-                text-align: center;
-            }
+            body { padding: 24px 16px; }
+            header { flex-direction: column; text-align: center; gap: 24px;}
+            .header-actions { flex-direction: column; width: 100%; }
+            .glass-btn { width: 100%; justify-content: center; }
+            .base-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .hero-banner { padding: 16px; border-radius: 24px; }
+            .app-card { padding: 20px 10px; border-radius: 24px; }
+            .icon-wrapper { width: 48px; height: 48px; font-size: 1.4rem; }
+            footer { flex-direction: column; gap: 12px; text-align: center; }
+            .modal-content { margin: auto 16px; margin-top: 20vh; padding: 24px; }
         }
     </style>
 </head>
@@ -468,37 +465,37 @@
         <header>
             <div class="header-title">
                 <h1>Amitosh Kumar</h1>
-                <p>Economics | Finance | Policy </p>
+                <p>Economics &bull; Finance &bull; Policy </p>
             </div>
 
             <div class="header-actions">
-                <!-- IN-BUILT BLOG LINK IN HEADER -->
-                <a href="/blog" class="blog-header-btn">
-                    <i class="fa-solid fa-book-open" style="color: var(--accent-orange);"></i>
+                <!-- BLOG BUTTON -->
+                <a href="/blog" class="glass-panel glass-btn blog-header-btn">
+                    <i class="fa-solid fa-book-open" style="color: var(--ios-orange);"></i>
                     <span>Blog</span>
                 </a>
 
-                <!-- CUSTOM STRATEGIX LOGO BADGE -->
-                <a href="https://strategix-671509941714.us-west1.run.app" target="_blank" class="strategix-badge-btn">
+                <!-- STRATEGIX BADGE -->
+                <a href="https://strategix-671509941714.us-west1.run.app" target="_blank" class="glass-panel glass-btn strategix-badge-btn">
                     <div class="brand-top-row">
-                        <i class="fa-solid fa-chart-line" style="color: var(--accent-red); font-size: 1.6rem; margin-bottom: 2px;"></i>
+                        <i class="fa-solid fa-chart-line" style="color: var(--text-main);"></i>
                         <div class="badge-text">
                             <h4>Strategix</h4>
                         </div>
                         <span class="live-dot"></span>
                     </div>
                     <div class="badge-text">
-                        <p>Live Stream - Economic news app</p>
+                        <p>Live Stream &bull; Economic news app</p>
                     </div>
                 </a>
             </div>
         </header>
 
-        <!-- TOP BANNER (CLEANED UP - NO PILLS) -->
-        <div class="hero-banner">
+        <!-- HERO BANNER -->
+        <div class="glass-panel hero-banner">
             <div class="video-box">
-                <i class="fa-brands fa-youtube" style="color: #FF0000; font-size: 3.5rem;"></i>
-                <p>YouTube Digital Profile AV</p>
+                <i class="fa-brands fa-apple" style="font-size: 3rem; color: rgba(255,255,255,0.9);"></i>
+                <p>Digital Profile AV</p>
             </div>
         </div>
 
@@ -506,35 +503,35 @@
         <div class="base-grid">
             
             <!-- 01. Credentials (Modal Trigger) -->
-            <div class="app-card" onclick="openModal('certModal')">
-                <div class="icon-wrapper cert-bg"><i class="fa-solid fa-award"></i></div>
+            <div class="glass-panel app-card" onclick="openModal('certModal')">
+                <div class="icon-wrapper"><i class="fa-solid fa-award"></i></div>
                 <div class="card-info">
                     <h3>Credentials</h3>
-                    <p style="color:var(--accent-gold); font-weight:bold;">ISB • Columbia</p>
+                    <p style="color: var(--text-muted);">ISB &bull; Columbia</p>
                 </div>
             </div>
 
             <!-- 02. HackerRank -->
-            <a href="https://www.hackerrank.com/profile/amitoshchandra1" target="_blank" class="app-card">
-                <div class="icon-wrapper hackerrank-bg"><i class="fa-brands fa-hackerrank"></i></div>
+            <a href="https://www.hackerrank.com/profile/amitoshchandra1" target="_blank" class="glass-panel app-card">
+                <div class="icon-wrapper"><i class="fa-brands fa-hackerrank"></i></div>
                 <div class="card-info">
                     <h3>HackerRank</h3>
-                    <p style="color:var(--accent-gold); font-weight:bold;">★ 5-STAR GOLD</p>
+                    <p style="color: var(--text-muted);">5-Star Gold</p>
                 </div>
             </a>
 
             <!-- 03. GitHub -->
-            <a href="https://github.com/Amitosh55" target="_blank" class="app-card">
-                <div class="icon-wrapper github-bg"><i class="fa-brands fa-github"></i></div>
+            <a href="https://github.com/Amitosh55" target="_blank" class="glass-panel app-card">
+                <div class="icon-wrapper"><i class="fa-brands fa-github"></i></div>
                 <div class="card-info">
                     <h3>GitHub</h3>
                     <p>Quant & R Repos</p>
                 </div>
             </a>
 
-            <!-- 04. Research (Modal Trigger for Articles/Blogs) -->
-            <div class="app-card" onclick="openModal('researchModal')">
-                <div class="icon-wrapper blog-bg"><i class="fa-solid fa-newspaper"></i></div>
+            <!-- 04. Research (Modal Trigger) -->
+            <div class="glass-panel app-card" onclick="openModal('researchModal')">
+                <div class="icon-wrapper"><i class="fa-solid fa-newspaper"></i></div>
                 <div class="card-info">
                     <h3>Research</h3>
                     <p>Macro Analysis</p>
@@ -542,17 +539,17 @@
             </div>
 
             <!-- 05. LinkedIn -->
-            <a href="https://www.linkedin.com/in/amitosh-kumar" target="_blank" class="app-card">
-                <div class="icon-wrapper linkedin-bg"><i class="fa-brands fa-linkedin-in"></i></div>
+            <a href="https://www.linkedin.com/in/amitosh-kumar" target="_blank" class="glass-panel app-card">
+                <div class="icon-wrapper"><i class="fa-brands fa-linkedin-in"></i></div>
                 <div class="card-info">
                     <h3>LinkedIn</h3>
                     <p>Equity Track</p>
                 </div>
             </a>
 
-            <!-- 06. Resume Download -->
-            <a href="#" target="_blank" class="app-card">
-                <div class="icon-wrapper resume-bg"><i class="fa-solid fa-file-pdf"></i></div>
+            <!-- 06. Resume -->
+            <a href="#" target="_blank" class="glass-panel app-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-file-pdf"></i></div>
                 <div class="card-info">
                     <h3>Resume</h3>
                     <p>Download CV</p>
@@ -560,10 +557,9 @@
             </a>
 
         </div>
-
     </div>
 
-    <!-- NEW SPLIT FOOTER -->
+    <!-- FOOTER -->
     <footer>
         <div class="footer-left">
             DESIGNED BY <span>AMITOSH KUMAR</span>
@@ -573,12 +569,12 @@
         </div>
     </footer>
 
-    <!-- 01. CREDENTIALS MODAL POPUP -->
+    <!-- 01. CREDENTIALS MODAL -->
     <div id="certModal" class="modal">
-        <div class="modal-content">
+        <div class="glass-panel modal-content">
             <div class="modal-header">
-                <h2><i class="fa-solid fa-certificate"></i> Credentials & Honors</h2>
-                <span class="close-btn" onclick="closeModal('certModal')">&times;</span>
+                <h2 style="color: var(--ios-orange);"><i class="fa-solid fa-certificate"></i> Credentials</h2>
+                <span class="close-btn" onclick="closeModal('certModal')"><i class="fa-solid fa-xmark"></i></span>
             </div>
             
             <div class="item-list">
@@ -587,75 +583,59 @@
                         <h4>Advanced Trading Algorithms</h4>
                         <p>Indian School of Business (ISB)</p>
                     </div>
-                    <span class="tag-badge tag-digital">Verified <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
+                    <span class="tag-badge tag-digital">Verified <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
                 </a>
 
-                <a href="https://your-actual-certificate-link-2.com" target="_blank" class="list-item">
+                <a href="#" target="_blank" class="list-item">
                     <div>
-                        <h4>Financial Engineering & Derivatives</h4>
+                        <h4>Financial Engineering</h4>
                         <p>Columbia University</p>
                     </div>
-                    <span class="tag-badge tag-digital">Verified <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
+                    <span class="tag-badge tag-digital">Verified <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
                 </a>
 
-                <a href="https://your-actual-certificate-link-3.com" target="_blank" class="list-item">
+                <a href="#" target="_blank" class="list-item">
                     <div>
-                        <h4>Portfolio & Quantitative Risk Management</h4>
+                        <h4>Quant Risk Management</h4>
                         <p>University of Geneva</p>
                     </div>
-                    <span class="tag-badge tag-digital">Verified <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
-                </a>
-
-                <a href="https://your-actual-certificate-link-4.com" target="_blank" class="list-item">
-                    <div>
-                        <h4>Institutional Academic Merit</h4>
-                        <p>Academic Excellence Honor</p>
-                    </div>
-                    <span class="tag-badge tag-inst">Institutional <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
+                    <span class="tag-badge tag-digital">Verified <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- 02. RESEARCH MODAL POPUP (LINKED TO IN-BUILT NEXT.JS /BLOG ROUTES) -->
+    <!-- 02. RESEARCH MODAL -->
     <div id="researchModal" class="modal">
-        <div class="modal-content">
+        <div class="glass-panel modal-content">
             <div class="modal-header">
-                <h2 style="color: #FF5722;"><i class="fa-solid fa-microscope"></i> Research Papers & Articles</h2>
-                <span class="close-btn" onclick="closeModal('researchModal')">&times;</span>
+                <h2 style="color: var(--ios-red);"><i class="fa-solid fa-microscope"></i> Research Papers</h2>
+                <span class="close-btn" onclick="closeModal('researchModal')"><i class="fa-solid fa-xmark"></i></span>
             </div>
             
             <div class="item-list">
                 <a href="/blog/rbi-macro-policy" class="list-item">
                     <div>
-                        <h4>RBI Macro Policy & Liquidity Analysis</h4>
-                        <p>Published: Aug 2026 • Macroeconomics</p>
+                        <h4>RBI Macro Policy & Liquidity</h4>
+                        <p>Aug 2026 &bull; Macroeconomics</p>
                     </div>
-                    <span class="tag-badge tag-digital">Read <i class="fa-solid fa-arrow-right" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
+                    <span class="tag-badge"><i class="fa-solid fa-chevron-right"></i></span>
                 </a>
 
                 <a href="/blog/quantitative-volatility" class="list-item">
                     <div>
-                        <h4>Quantitative Volatility Modeling (3D IV)</h4>
-                        <p>Published: Jul 2026 • Financial Engineering</p>
+                        <h4>Quant Volatility (3D IV)</h4>
+                        <p>Jul 2026 &bull; Fin Engineering</p>
                     </div>
-                    <span class="tag-badge tag-digital">Read <i class="fa-solid fa-arrow-right" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
+                    <span class="tag-badge"><i class="fa-solid fa-chevron-right"></i></span>
                 </a>
 
                 <a href="/blog/algorithmic-trading-strategies" class="list-item">
                     <div>
-                        <h4>Algorithmic Trading Strategies in Indian Markets</h4>
-                        <p>Published: Jun 2026 • Algorithmic Trading</p>
+                        <h4>Algo Trading in Indian Markets</h4>
+                        <p>Jun 2026 &bull; Algorithmic Trading</p>
                     </div>
-                    <span class="tag-badge tag-digital">Read <i class="fa-solid fa-arrow-right" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
-                </a>
-
-                <a href="/blog/global-monetary-policy" class="list-item">
-                    <div>
-                        <h4>Global Monetary Policy Spillovers on Emerging Economies</h4>
-                        <p>Published: May 2026 • Global Economics</p>
-                    </div>
-                    <span class="tag-badge tag-digital">Read <i class="fa-solid fa-arrow-right" style="font-size: 0.6rem; margin-left: 2px;"></i></span>
+                    <span class="tag-badge"><i class="fa-solid fa-chevron-right"></i></span>
                 </a>
             </div>
         </div>
@@ -664,16 +644,29 @@
     <!-- JAVASCRIPT -->
     <script>
         function openModal(modalId) { 
-            document.getElementById(modalId).style.display = 'block'; 
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'block';
+            // Slight delay to allow display:block to apply before animating opacity
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
         }
 
         function closeModal(modalId) { 
-            document.getElementById(modalId).style.display = 'none'; 
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('show');
+            // Wait for transition to finish before hiding
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
         }
 
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
-                event.target.style.display = "none";
+                event.target.classList.remove('show');
+                setTimeout(() => {
+                    event.target.style.display = "none";
+                }, 300);
             }
         }
     </script>
