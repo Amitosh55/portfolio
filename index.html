@@ -212,18 +212,25 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
+            gap: 12px; /* Tightened gap between layers */
         }
 
-        .hr-badges-row, .oracle-badges-row {
+        .hr-badges-row {
             display: flex;
-            gap: 12px;
+            gap: 16px;
             justify-content: center;
+        }
+
+        .oracle-badges-row {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            margin-top: -10px; /* Pulls Oracle badges up closer to HR badges */
         }
 
         /* Individual Python/SQL badges */
         .hr-badge {
-            width: 80px; 
+            width: 90px; /* Slightly increased for better visibility */
             height: auto;
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
             transition: transform 0.3s ease;
@@ -235,14 +242,19 @@
 
         /* Even Bigger Oracle Badges */
         .oracle-badge {
-            width: 120px; /* Greatly increased size for Oracle badges */
+            width: 160px; /* Massively increased size */
             height: auto;
+            /* Negative margins cancel out invisible padding in the image file */
+            margin: -15px -10px; 
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); 
             transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1;
         }
         
         .oracle-badge:hover {
-            transform: translateY(-2px);
+            transform: scale(1.05) translateY(-2px);
+            z-index: 2;
         }
 
         .bio-text {
@@ -489,8 +501,8 @@
                 align-items: center;
             }
             .profile-pic { width: 140px; height: 140px; }
-            .hr-badge { width: 70px; }
-            .oracle-badge { width: 100px; } /* Increased size for mobile as well */
+            .hr-badge { width: 80px; }
+            .oracle-badge { width: 140px; margin: -10px -5px; } /* Proportional resize for mobile */
         }
 
         @media (max-width: 600px) {
