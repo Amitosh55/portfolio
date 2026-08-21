@@ -103,7 +103,7 @@
             gap: 16px;
         }
 
-        /* BUTTONS (Live Activity / Dynamic Island vibe) */
+        /* BUTTONS */
         .glass-btn {
             text-decoration: none;
             color: var(--text-main);
@@ -163,7 +163,7 @@
         }
 
         .badge-text h4 {
-            font-family: 'Playfair Display', serif; /* Classy Font */
+            font-family: 'Playfair Display', serif;
             font-size: 1.4rem;
             font-style: italic;
             font-weight: 700;
@@ -177,13 +177,39 @@
             font-weight: 500;
         }
 
-        /* BIO BANNER */
+        /* BIO BANNER & VISUALS */
         .bio-banner {
             width: 100%;
             border-radius: 32px;
             padding: 32px;
             display: flex;
+            flex-direction: row; /* Align visual and text side-by-side */
+            align-items: center;
+            gap: 40px;
+        }
+
+        .bio-visuals {
+            display: flex;
             flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            flex-shrink: 0; /* Prevents images from getting squished */
+        }
+
+        .profile-pic {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%; /* Makes image a perfect circle */
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .badges-pic {
+            width: 140px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
         }
 
         .bio-text {
@@ -193,18 +219,16 @@
         }
 
         .bio-text p {
-            /* Slim, classy font styling */
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 300; 
             font-size: 0.95rem;
             line-height: 1.8;
-            color: rgba(245, 245, 245, 0.85); /* Slightly softened white */
+            color: rgba(245, 245, 245, 0.85);
             letter-spacing: 0.4px;
             text-align: justify;
             text-justify: inter-word;
         }
         
-        /* Highlight the name in the first paragraph using the Playfair font */
         .bio-text p strong.name-highlight {
             font-family: 'Playfair Display', serif;
             font-weight: 600;
@@ -418,6 +442,21 @@
             .base-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
+        @media (max-width: 768px) {
+            .bio-banner { 
+                flex-direction: column; /* Stack visuals and text vertically on mobile */
+                text-align: center;
+                gap: 24px;
+            }
+            .bio-visuals {
+                flex-direction: row; /* Put badges next to circular profile pic on mobile */
+                align-items: center;
+                justify-content: center;
+            }
+            .profile-pic { width: 120px; height: 120px; }
+            .badges-pic { width: 110px; }
+        }
+
         @media (max-width: 600px) {
             body { padding: 24px 16px; }
             header { flex-direction: column; text-align: center; gap: 24px;}
@@ -430,6 +469,9 @@
             .icon-wrapper { width: 48px; height: 48px; font-size: 1.4rem; }
             footer { flex-direction: column; gap: 12px; text-align: center; }
             .modal-content { margin: auto 16px; margin-top: 20vh; padding: 24px; }
+            
+            /* For very small screens, stack the images */
+            .bio-visuals { flex-direction: column; }
         }
     </style>
 </head>
@@ -467,8 +509,16 @@
             </div>
         </header>
 
-        <!-- BIO BANNER (Replaced Digital AV Profile) -->
+        <!-- BIO BANNER with Images integrated -->
         <div class="glass-panel bio-banner">
+            
+            <!-- Side visuals grouping Profile Pic & Badges -->
+            <div class="bio-visuals">
+                <img src="image_677a45.png" alt="Amitosh Kumar Profile" class="profile-pic">
+                <img src="Screenshot 2026-08-21 145728.png" alt="HackerRank Badges" class="badges-pic">
+            </div>
+
+            <!-- Bio Text description -->
             <div class="bio-text">
                 <p> Amitosh Kumar is currently pursuing an M.Sc. in Economics at Jaypee Institute of Information Technology (JIIT), where his academic interests focus on macroeconomics, financial markets, and quantitative research. He is passionate about understanding the intersection of economic theory, data-driven analysis, and investment strategy.</p>
                 <p>Previously, Amitosh worked as an Advisory and Fundamental Analyst Executive at Mastertrust, contributing to equity research, macroeconomic analysis, and investment advisory. His experience involved evaluating company fundamentals, interpreting economic developments, and translating complex market data into actionable insights. He also worked on automating economic data workflows, reflecting his interest in combining analytical rigor with technology to enhance research efficiency.</p>
