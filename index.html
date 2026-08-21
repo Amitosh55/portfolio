@@ -205,11 +205,37 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
         }
 
+        /* NEW BADGES GROUP STYLING */
+        .badges-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
         .badges-pic {
             width: 140px;
             height: auto;
             border-radius: 12px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .oracle-badges-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .oracle-badge {
+            width: 64px; /* Sized to perfectly pair under the 140px hackerrank image */
+            height: auto;
+            /* Drop shadow nicely traces the complex shape of the oracle badges */
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); 
+            transition: transform 0.3s ease;
+        }
+        
+        .oracle-badge:hover {
+            transform: translateY(-2px);
         }
 
         .bio-text {
@@ -449,12 +475,14 @@
                 gap: 24px;
             }
             .bio-visuals {
-                flex-direction: row; /* Put badges next to circular profile pic on mobile */
+                flex-direction: row; 
                 align-items: center;
                 justify-content: center;
+                flex-wrap: wrap;
             }
             .profile-pic { width: 120px; height: 120px; }
             .badges-pic { width: 110px; }
+            .oracle-badge { width: 50px; }
         }
 
         @media (max-width: 600px) {
@@ -512,11 +540,21 @@
         <!-- BIO BANNER with Images integrated -->
         <div class="glass-panel bio-banner">
             
-            <!-- Side visuals grouping Profile Pic & Badges -->
+            <!-- Side visuals grouping Profile Pic & All Badges -->
             <div class="bio-visuals">
-                <!-- Updated paths to reference the 'images' folder -->
-                <img src="images/image_677a45.png" alt="Amitosh Kumar Profile" class="profile-pic">
-                <img src="images/Screenshot%202026-08-21%20145728.png" alt="HackerRank Badges" class="badges-pic">
+                <!-- Updated Profile Picture -->
+                <img src="images/Screenshot%202026-08-21%20220920.png" alt="Amitosh Kumar Profile" class="profile-pic">
+                
+                <!-- Grouping the badges together -->
+                <div class="badges-group">
+                    <img src="images/Screenshot%202026-08-21%20145728.png" alt="HackerRank Badges" class="badges-pic">
+                    
+                    <!-- Oracle Badges Side-by-Side -->
+                    <div class="oracle-badges-row">
+                        <img src="images/OFAASOFA.png" alt="Oracle Fusion AI Agent Studio Badge" class="oracle-badge">
+                        <img src="images/OCI25AICFAV1.png" alt="Oracle Cloud Infrastructure AI Foundations Badge" class="oracle-badge">
+                    </div>
+                </div>
             </div>
 
             <!-- Bio Text description -->
