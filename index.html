@@ -207,23 +207,14 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
         }
 
-        /* BADGES GROUP STYLING */
-        .badges-group {
-            display: flex;
-            flex-direction: column;
+        /* BADGES CSS GRID STYLING - FIXES ALIGNMENT */
+        .badges-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 20px;
+            row-gap: 0px; 
+            justify-items: center;
             align-items: center;
-            gap: 0px; /* Removed gap so we control spacing purely with margins */
-        }
-
-        .hr-badges-row {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-        }
-
-        .oracle-badges-row {
-            display: flex;
-            justify-content: center;
         }
 
         /* Individual Python/SQL badges */
@@ -238,12 +229,11 @@
             transform: translateY(-2px);
         }
 
-        /* Huge Oracle Badges */
+        /* Oracle Badges */
         .oracle-badge {
-            width: 200px; /* Massive size */
+            width: 140px; /* Big enough to counter transparent padding */
             height: auto;
-            /* Negative horizontal margin pulls them closer to each other, NO vertical negative margins */
-            margin: 0 -25px; 
+            margin-top: -24px; /* Pulls them perfectly under the row above */
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); 
             transition: transform 0.3s ease;
         }
@@ -496,8 +486,20 @@
                 align-items: center;
             }
             .profile-pic { width: 140px; height: 140px; }
-            .hr-badge { width: 80px; }
-            .oracle-badge { width: 160px; margin: 0 -15px; } /* Slightly smaller for mobile layout */
+            
+            /* TRANSFORM GRID FOR MOBILE: 1 row, 4 columns */
+            .badges-grid {
+                grid-template-columns: repeat(4, 1fr);
+                column-gap: 8px;
+                align-items: center;
+                width: 100%;
+                justify-content: center;
+            }
+            .hr-badge { width: 45px; } /* Shrunk for mobile row */
+            .oracle-badge { 
+                width: 70px; /* Shrunk for mobile row */
+                margin-top: 0; /* Reset margin since they share the same row now */
+            }
         }
 
         @media (max-width: 600px) {
@@ -557,20 +559,12 @@
                 <!-- Updated Profile Picture -->
                 <img src="images/1752671429184.png" alt="Amitosh Kumar Profile" class="profile-pic">
                 
-                <!-- Grouping the badges together -->
-                <div class="badges-group">
-                    
-                    <!-- HackerRank Badges Side-by-Side -->
-                    <div class="hr-badges-row">
-                        <img src="images/Screenshot_2026-08-21_222738-removebg-preview.png" alt="Python Badge" class="hr-badge">
-                        <img src="images/Screenshot_2026-08-21_222745-removebg-preview.png" alt="SQL Badge" class="hr-badge">
-                    </div>
-
-                    <!-- Oracle Badges Side-by-Side (Made Bigger) -->
-                    <div class="oracle-badges-row">
-                        <img src="images/OFAASOFA.png" alt="Oracle Fusion AI Agent Studio Badge" class="oracle-badge">
-                        <img src="images/OCI25AICFAV1.png" alt="Oracle Cloud Infrastructure AI Foundations Badge" class="oracle-badge">
-                    </div>
+                <!-- NEW GRID FOR BADGES -->
+                <div class="badges-grid">
+                    <img src="images/Screenshot_2026-08-21_222738-removebg-preview.png" alt="Python Badge" class="hr-badge">
+                    <img src="images/Screenshot_2026-08-21_222745-removebg-preview.png" alt="SQL Badge" class="hr-badge">
+                    <img src="images/OFAASOFA.png" alt="Oracle Fusion AI Agent Studio Badge" class="oracle-badge">
+                    <img src="images/OCI25AICFAV1.png" alt="Oracle Cloud Infrastructure AI Foundations Badge" class="oracle-badge">
                 </div>
             </div>
 
