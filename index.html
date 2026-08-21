@@ -212,7 +212,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px; /* Tightened gap between layers */
+            gap: 0px; /* Removed gap so we control spacing purely with margins */
         }
 
         .hr-badges-row {
@@ -223,14 +223,12 @@
 
         .oracle-badges-row {
             display: flex;
-            gap: 0;
             justify-content: center;
-            margin-top: -10px; /* Pulls Oracle badges up closer to HR badges */
         }
 
         /* Individual Python/SQL badges */
         .hr-badge {
-            width: 90px; /* Slightly increased for better visibility */
+            width: 90px; 
             height: auto;
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
             transition: transform 0.3s ease;
@@ -240,21 +238,18 @@
             transform: translateY(-2px);
         }
 
-        /* Even Bigger Oracle Badges */
+        /* Huge Oracle Badges */
         .oracle-badge {
-            width: 160px; /* Massively increased size */
+            width: 200px; /* Massive size */
             height: auto;
-            /* Negative margins cancel out invisible padding in the image file */
-            margin: -15px -10px; 
+            /* Negative horizontal margin pulls them closer to each other, NO vertical negative margins */
+            margin: 0 -25px; 
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); 
             transition: transform 0.3s ease;
-            position: relative;
-            z-index: 1;
         }
         
         .oracle-badge:hover {
             transform: scale(1.05) translateY(-2px);
-            z-index: 2;
         }
 
         .bio-text {
@@ -502,7 +497,7 @@
             }
             .profile-pic { width: 140px; height: 140px; }
             .hr-badge { width: 80px; }
-            .oracle-badge { width: 140px; margin: -10px -5px; } /* Proportional resize for mobile */
+            .oracle-badge { width: 160px; margin: 0 -15px; } /* Slightly smaller for mobile layout */
         }
 
         @media (max-width: 600px) {
