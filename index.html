@@ -6,27 +6,26 @@
     <title>Amitosh Kumar | Economics | Finance | Policy</title>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Added weight 300 for the slim classy bio text -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* Pure OLED Black */
-            --bg-base: #000000;
-            --text-main: #FFFFFF;
-            --text-muted: rgba(235, 235, 245, 0.6); 
+            /* Deep Studio Black */
+            --bg-base: #050505; 
+            --text-main: #F4F4F5;
+            --text-muted: rgba(235, 235, 245, 0.5); 
             
-            /* Liquid Glass Variables */
-            --glass-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
-            --glass-hover: linear-gradient(145deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.04) 100%);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glass-highlight: rgba(255, 255, 255, 0.2);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+            /* Liquid Glass Variables (Subtle for Elegance) */
+            --glass-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            --glass-hover: linear-gradient(145deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.02) 100%);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.12);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
             
-            /* iOS System Colors */
-            --ios-blue: #0A84FF;
-            --ios-orange: #FF9F0A;
-            --ios-red: #FF453A;
+            /* Restrained Theme Colors (Strategic Think Tank Feel) */
+            --theme-accent: #c9a975; /* Muted Gold/Bronze */
+            --theme-accent-dim: #8b7956;
         }
 
         * { 
@@ -39,7 +38,7 @@
         body {
             min-height: 100vh;
             width: 100vw;
-            background-color: var(--bg-base); /* Completely Black */
+            background-color: var(--bg-base);
             color: var(--text-main);
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
@@ -80,20 +79,21 @@
         }
         
         .header-title h1 { 
-            font-family: 'Playfair Display', serif; /* Classy Font */
+            font-family: 'Playfair Display', serif;
             font-size: clamp(2.5rem, 4vw, 3.8rem); 
-            font-weight: 600; 
+            font-weight: 500; 
             letter-spacing: -0.5px;
             line-height: 1.1;
+            color: var(--text-main);
         }
         
         .header-title p { 
             font-size: clamp(0.75rem, 1vw, 0.85rem); 
-            letter-spacing: 2px; 
-            color: var(--text-muted); 
+            letter-spacing: 3px; 
+            color: var(--theme-accent-dim); 
             font-weight: 600; 
             text-transform: uppercase;
-            margin-top: 8px;
+            margin-top: 10px;
             margin-left: 4px;
         }
 
@@ -107,7 +107,7 @@
         .glass-btn {
             text-decoration: none;
             color: var(--text-main);
-            border-radius: 999px; /* Pill shape */
+            border-radius: 999px;
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             position: relative;
             overflow: hidden;
@@ -116,7 +116,8 @@
         .glass-btn:hover {
             background: var(--glass-hover);
             transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            border-color: var(--theme-accent-dim);
         }
         
         .glass-btn:active {
@@ -150,14 +151,14 @@
         .live-dot {
             width: 8px;
             height: 8px;
-            background-color: var(--ios-red);
+            background-color: var(--theme-accent);
             border-radius: 50%;
             display: inline-block;
-            box-shadow: 0 0 10px var(--ios-red);
-            animation: pulse-red 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+            box-shadow: 0 0 10px var(--theme-accent);
+            animation: pulse-accent 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
         }
 
-        @keyframes pulse-red {
+        @keyframes pulse-accent {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.4; transform: scale(1.2); }
         }
@@ -166,27 +167,27 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.4rem;
             font-style: italic;
-            font-weight: 700;
+            font-weight: 600;
             line-height: 1;
             letter-spacing: 0.5px;
+            color: var(--theme-accent);
         }
 
         .badge-text p {
             font-size: 0.7rem; 
             color: var(--text-muted);
             font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
         /* BIO BANNER & VISUALS */
         .bio-banner {
             width: 100%;
             border-radius: 32px;
-            padding: 32px;
+            padding: 40px;
             display: flex;
-            /* row-reverse forces the first child (visuals) to the right */
             flex-direction: row-reverse; 
-            /* flex-start aligns them to the top */
-            align-items: flex-start;
+            align-items: center;
             gap: 40px;
         }
 
@@ -194,68 +195,46 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
-            flex-shrink: 0; /* Prevents images from getting squished */
+            gap: 24px;
+            flex-shrink: 0; 
         }
 
         .profile-pic {
             width: 160px;
             height: 160px;
-            border-radius: 50%; /* Makes image a perfect circle */
+            border-radius: 50%; 
             object-fit: cover;
-            border: 3px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--theme-accent-dim);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
         }
 
-        /* BADGES GROUP STYLING */
+        /* NEW UNIFIED BADGES ROW */
         .badges-group {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: nowrap;
             align-items: center;
-            gap: 0px; /* Removed gap so we control spacing purely with margins */
-        }
-
-        .hr-badges-row {
-            display: flex;
-            gap: 16px;
             justify-content: center;
+            gap: 12px;
         }
 
-        .oracle-badges-row {
-            display: flex;
-            justify-content: center;
-        }
-
-        /* Individual Python/SQL badges */
-        .hr-badge {
-            width: 90px; 
+        .small-badge {
+            width: 42px; 
             height: auto;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
-            transition: transform 0.3s ease;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+            transition: transform 0.3s ease, filter 0.3s ease;
         }
 
-        .hr-badge:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Huge Oracle Badges */
-        .oracle-badge {
-            width: 200px; /* Massive size */
-            height: auto;
-            /* Negative horizontal margin pulls them closer to each other, NO vertical negative margins */
-            margin: 0 -25px; 
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)); 
-            transition: transform 0.3s ease;
-        }
-        
-        .oracle-badge:hover {
-            transform: scale(1.05) translateY(-2px);
+        .small-badge:hover {
+            transform: translateY(-3px) scale(1.1);
+            filter: drop-shadow(0 6px 12px rgba(201, 169, 117, 0.2));
         }
 
         .bio-text {
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 20px;
             flex: 1;
         }
 
@@ -274,11 +253,11 @@
             font-family: 'Playfair Display', serif;
             font-weight: 600;
             font-size: 1.15rem;
-            color: var(--text-main);
+            color: var(--theme-accent);
             letter-spacing: 0px;
         }
 
-        /* iOS CONTROL CENTER STYLE GRID */
+        /* GRID SYSTEM */
         .base-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -304,6 +283,7 @@
         .app-card:hover {
             background: var(--glass-hover);
             transform: translateY(-4px);
+            border-color: rgba(201, 169, 117, 0.3);
         }
         
         .app-card:active {
@@ -320,19 +300,20 @@
             justify-content: center;
             font-size: 1.6rem;
             color: rgba(255, 255, 255, 0.9);
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-top: 1px solid rgba(255, 255, 255, 0.3);
-            border-left: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.05), 0 4px 12px rgba(0, 0, 0, 0.4);
             transition: all 0.3s ease;
         }
 
         .app-card:hover .icon-wrapper {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
-            color: #FFFFFF;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+            color: var(--theme-accent);
+            border-color: rgba(201, 169, 117, 0.4);
         }
 
         .card-info h3 { 
@@ -360,19 +341,21 @@
             color: var(--text-muted);
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             padding: 24px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        footer .footer-left span { color: var(--text-main); font-weight: 800; }
+        footer .footer-left span { color: var(--theme-accent); font-weight: 800; }
         
         footer .footer-right a {
             color: var(--text-main);
             text-decoration: none;
             transition: color 0.2s ease;
             text-transform: none;
+            letter-spacing: 0.5px;
         }
-        footer .footer-right a:hover { color: var(--ios-blue); }
+        footer .footer-right a:hover { color: var(--theme-accent); }
 
         /* MODALS */
         .modal {
@@ -380,9 +363,9 @@
             position: fixed;
             top: 0; left: 0; 
             width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 1000; 
             padding: 20px;
             opacity: 0;
@@ -414,35 +397,38 @@
         }
         
         .modal-header h2 { 
-            font-size: 1.3rem; 
-            font-weight: 700;
-            letter-spacing: -0.5px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem; 
+            font-style: italic;
+            font-weight: 600;
+            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             gap: 12px;
+            color: var(--theme-accent);
         }
         
         .close-btn { 
             width: 32px;
             height: 32px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1rem; 
-            color: var(--text-main); 
+            color: var(--text-muted); 
             cursor: pointer; 
             transition: all 0.2s ease;
         }
 
-        .close-btn:hover { background: rgba(255,255,255,0.2); transform: scale(1.05); }
+        .close-btn:hover { background: rgba(255,255,255,0.15); color: #FFF; transform: scale(1.05); }
         .close-btn:active { transform: scale(0.95); }
 
         .item-list { display: flex; flex-direction: column; gap: 12px; }
         
         .list-item {
-            background: rgba(0, 0, 0, 0.3); 
+            background: rgba(0, 0, 0, 0.4); 
             border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 16px 20px; 
             border-radius: 20px;
@@ -455,8 +441,8 @@
         }
 
         .list-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(201, 169, 117, 0.3);
             transform: translateX(4px);
         }
         
@@ -468,15 +454,13 @@
             padding: 6px 10px; 
             border-radius: 10px; 
             font-weight: 700; 
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--theme-accent);
             display: flex;
             align-items: center;
             gap: 4px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
-        
-        .tag-digital { color: var(--ios-blue); }
-        .tag-inst { color: var(--ios-orange); }
 
         /* RESPONSIVE BREAKPOINTS */
         @media (max-width: 1024px) {
@@ -485,19 +469,21 @@
 
         @media (max-width: 768px) {
             .bio-banner { 
-                /* Switches back to standard column so visuals stay on top for mobile */
                 flex-direction: column; 
                 text-align: center;
-                gap: 24px;
-                align-items: center;
+                gap: 32px;
+                padding: 32px 24px;
             }
             .bio-visuals {
                 flex-direction: column; 
                 align-items: center;
             }
-            .profile-pic { width: 140px; height: 140px; }
-            .hr-badge { width: 80px; }
-            .oracle-badge { width: 160px; margin: 0 -15px; } /* Slightly smaller for mobile layout */
+            .badges-group {
+                gap: 8px;
+            }
+            .small-badge {
+                width: 38px;
+            }
         }
 
         @media (max-width: 600px) {
@@ -506,11 +492,10 @@
             .header-actions { flex-direction: column; width: 100%; }
             .glass-btn { width: 100%; justify-content: center; }
             .base-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-            .bio-banner { padding: 24px; border-radius: 24px; }
             .bio-text p { font-size: 0.85rem; text-align: left; }
             .app-card { padding: 20px 10px; border-radius: 24px; }
             .icon-wrapper { width: 48px; height: 48px; font-size: 1.4rem; }
-            footer { flex-direction: column; gap: 12px; text-align: center; }
+            footer { flex-direction: column; gap: 12px; text-align: center; border-top: none; }
             .modal-content { margin: auto 16px; margin-top: 20vh; padding: 24px; }
         }
     </style>
@@ -529,7 +514,7 @@
             <div class="header-actions">
                 <!-- BLOG BUTTON -->
                 <a href="/blog" class="glass-panel glass-btn blog-header-btn">
-                    <i class="fa-solid fa-book-open" style="color: var(--ios-orange);"></i>
+                    <i class="fa-solid fa-book-open" style="color: var(--theme-accent);"></i>
                     <span>Blog</span>
                 </a>
 
@@ -554,23 +539,15 @@
             
             <!-- Side visuals grouping Profile Pic & All Badges -->
             <div class="bio-visuals">
-                <!-- Updated Profile Picture -->
                 <img src="images/1752671429184.png" alt="Amitosh Kumar Profile" class="profile-pic">
                 
-                <!-- Grouping the badges together -->
+                <!-- NEW: Single row of small badges -->
                 <div class="badges-group">
-                    
-                    <!-- HackerRank Badges Side-by-Side -->
-                    <div class="hr-badges-row">
-                        <img src="images/Screenshot_2026-08-21_222738-removebg-preview.png" alt="Python Badge" class="hr-badge">
-                        <img src="images/Screenshot_2026-08-21_222745-removebg-preview.png" alt="SQL Badge" class="hr-badge">
-                    </div>
-
-                    <!-- Oracle Badges Side-by-Side (Made Bigger) -->
-                    <div class="oracle-badges-row">
-                        <img src="images/OFAASOFA.png" alt="Oracle Fusion AI Agent Studio Badge" class="oracle-badge">
-                        <img src="images/OCI25AICFAV1.png" alt="Oracle Cloud Infrastructure AI Foundations Badge" class="oracle-badge">
-                    </div>
+                    <img src="images/Screenshot_2026-08-21_222738-removebg-preview.png" alt="Python Badge" class="small-badge">
+                    <img src="images/Screenshot_2026-08-21_222745-removebg-preview.png" alt="SQL Badge" class="small-badge">
+                    <img src="images/OFAASOFA.png" alt="Oracle Fusion AI Agent Studio Badge" class="small-badge">
+                    <img src="images/OCI25AICFAV1.png" alt="Oracle Cloud Infrastructure AI Foundations Badge" class="small-badge">
+                    <img src="aws-knowledge-amazon-eks-training-badge.png" alt="AWS EKS Badge" class="small-badge">
                 </div>
             </div>
 
@@ -656,7 +633,7 @@
     <div id="certModal" class="modal">
         <div class="glass-panel modal-content">
             <div class="modal-header">
-                <h2 style="color: var(--ios-orange);"><i class="fa-solid fa-certificate"></i> Credentials</h2>
+                <h2><i class="fa-solid fa-certificate"></i> Credentials</h2>
                 <span class="close-btn" onclick="closeModal('certModal')"><i class="fa-solid fa-xmark"></i></span>
             </div>
             
@@ -666,7 +643,7 @@
                         <h4>Advanced Trading Algorithms</h4>
                         <p>Indian School of Business (ISB)</p>
                     </div>
-                    <span class="tag-badge tag-digital">Verified <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    <span class="tag-badge">Verified <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></span>
                 </a>
 
                 <a href="#" target="_blank" class="list-item">
@@ -674,7 +651,7 @@
                         <h4>Financial Engineering</h4>
                         <p>Columbia University</p>
                     </div>
-                    <span class="tag-badge tag-digital">Verified <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    <span class="tag-badge">Verified <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></span>
                 </a>
 
                 <a href="#" target="_blank" class="list-item">
@@ -682,7 +659,7 @@
                         <h4>Quant Risk Management</h4>
                         <p>University of Geneva</p>
                     </div>
-                    <span class="tag-badge tag-digital">Verified <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    <span class="tag-badge">Verified <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></span>
                 </a>
             </div>
         </div>
@@ -692,7 +669,7 @@
     <div id="researchModal" class="modal">
         <div class="glass-panel modal-content">
             <div class="modal-header">
-                <h2 style="color: var(--ios-red);"><i class="fa-solid fa-microscope"></i> Research Papers</h2>
+                <h2><i class="fa-solid fa-microscope"></i> Research Papers</h2>
                 <span class="close-btn" onclick="closeModal('researchModal')"><i class="fa-solid fa-xmark"></i></span>
             </div>
             
