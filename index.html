@@ -48,7 +48,7 @@
             padding: 40px 20px 20px 20px;
         }
 
-        /* NEW 2-COLUMN LAYOUT */
+        /* 2-COLUMN LAYOUT */
         .page-layout {
             display: grid;
             grid-template-columns: minmax(auto, 900px) 360px; /* Main content left, sidebar right */
@@ -114,9 +114,10 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            max-height: 280px; /* Keeps panel small */
+            max-height: 310px; /* Keeps panel small */
             overflow-y: auto;
             padding-right: 8px; /* Space for scrollbar */
+            padding-bottom: 4px;
         }
 
         /* Custom Scrollbar for feeds */
@@ -135,25 +136,26 @@
             background: var(--theme-accent-dim);
         }
 
-        /* COMPACT POST CARD WITH HOVER GLOW */
+        /* COMPACT POST CARD */
         .post-card {
             background: rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 16px;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             display: flex;
-            flex-direction: row; 
+            flex-direction: row; /* Image and text side-by-side */
             align-items: center;
             padding: 10px;
             gap: 12px;
         }
 
+        /* ADDED GLOW HOVER ANIMATION */
         .post-card:hover {
             background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(201, 169, 117, 0.5);
+            border-color: rgba(201, 169, 117, 0.5); /* Brighter accent border */
             transform: translateX(4px);
-            box-shadow: 0 0 15px rgba(201, 169, 117, 0.25); /* Subtle glow effect */
+            box-shadow: 0 4px 16px rgba(201, 169, 117, 0.15); /* Subtle glowing shadow */
         }
 
         .post-img {
@@ -184,20 +186,11 @@
             color: var(--text-muted);
             line-height: 1.4;
             font-weight: 400;
-            /* Truncates text to exactly 2 lines */
+            /* Truncates text to exactly 3 lines */
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
-        }
-
-        .post-meta {
-            font-size: 0.6rem;
-            color: var(--theme-accent-dim);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 2px;
         }
 
         /* HEADER */
@@ -377,14 +370,6 @@
             text-align: justify;
             text-justify: inter-word;
         }
-        
-        .bio-text p strong.name-highlight {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            font-size: 1.15rem;
-            color: var(--theme-accent);
-            letter-spacing: 0px;
-        }
 
         /* GRID SYSTEM */
         .base-grid {
@@ -505,4 +490,379 @@
         .modal-content {
             max-width: 540px; 
             margin: 10vh auto;
-            border-radius: 32px;
+            border-radius: 32px; 
+            padding: 32px;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .modal.show .modal-content { transform: translateY(0) scale(1); }
+
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        
+        .modal-header h2 { 
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem; 
+            font-style: italic;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--theme-accent);
+        }
+        
+        .close-btn { 
+            width: 32px; height: 32px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; color: var(--text-muted); cursor: pointer; transition: all 0.2s ease;
+        }
+
+        .close-btn:hover { background: rgba(255,255,255,0.15); color: #FFF; transform: scale(1.05); }
+        .close-btn:active { transform: scale(0.95); }
+
+        .item-list { display: flex; flex-direction: column; gap: 12px; }
+        
+        .list-item {
+            background: rgba(0, 0, 0, 0.4); 
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 16px 20px; border-radius: 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            text-decoration: none; transition: all 0.3s ease; cursor: pointer;
+        }
+
+        .list-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(201, 169, 117, 0.3);
+            transform: translateX(4px);
+        }
+        
+        .list-item h4 { font-size: 0.95rem; font-weight: 600; color: #FFF; margin-bottom: 4px;}
+        .list-item p { font-size: 0.75rem; color: var(--text-muted); font-weight: 500;}
+        
+        .tag-badge { 
+            font-size: 0.7rem; padding: 6px 10px; border-radius: 10px; font-weight: 700; 
+            background: rgba(255, 255, 255, 0.05); color: var(--theme-accent);
+            display: flex; align-items: center; gap: 4px; border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* RESPONSIVE BREAKPOINTS */
+        @media (max-width: 1200px) {
+            .page-layout { 
+                grid-template-columns: 1fr; 
+            }
+            .right-sidebar {
+                flex-direction: row;
+                flex-wrap: wrap;
+                position: relative;
+                top: 0;
+            }
+            .side-panel {
+                flex: 1 1 300px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .base-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .right-sidebar { flex-direction: column; }
+            .bio-banner { 
+                flex-direction: column; text-align: center; gap: 32px; padding: 32px 24px;
+            }
+            .bio-visuals { flex-direction: column; align-items: center; }
+            .badges-group { gap: 8px; }
+            .small-badge { width: 38px; }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 24px 16px; }
+            header { flex-direction: column; text-align: center; gap: 24px;}
+            .header-actions { flex-direction: column; width: 100%; }
+            .glass-btn { width: 100%; justify-content: center; }
+            .base-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .bio-text p { font-size: 0.85rem; text-align: left; }
+            .app-card { padding: 20px 10px; border-radius: 24px; }
+            .icon-wrapper { width: 48px; height: 48px; font-size: 1.4rem; }
+            footer { flex-direction: column; gap: 12px; text-align: center; border-top: none; }
+            .modal-content { margin: auto 16px; margin-top: 20vh; padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-layout">
+        
+        <!-- CENTER PANEL: MAIN CONTENT -->
+        <main class="main-container">
+            <!-- HEADER -->
+            <header>
+                <div class="header-title">
+                    <h1>Amitosh Kumar</h1>
+                    <p>Economics &bull; Finance &bull; Policy </p>
+                </div>
+
+                <div class="header-actions">
+                    <a href="/blog" class="glass-panel glass-btn blog-header-btn">
+                        <i class="fa-solid fa-book-open" style="color: var(--theme-accent);"></i>
+                        <span>Blog</span>
+                    </a>
+
+                    <a href="https://strategix-671509941714.us-west1.run.app" target="_blank" class="glass-panel glass-btn strategix-badge-btn">
+                        <div class="brand-top-row">
+                            <i class="fa-solid fa-chart-line" style="color: var(--text-main);"></i>
+                            <div class="badge-text">
+                                <h4>Strategix</h4>
+                            </div>
+                            <span class="live-dot"></span>
+                        </div>
+                        <div class="badge-text">
+                            <p>Live Stream &bull; Economic news app</p>
+                        </div>
+                    </a>
+                </div>
+            </header>
+
+            <!-- BIO BANNER -->
+            <div class="glass-panel bio-banner">
+                <div class="bio-visuals">
+                    <img src="images/1752671429184.png" alt="Amitosh Kumar Profile" class="profile-pic">
+                    <div class="badges-group">
+                        <img src="images/Screenshot_2026-08-21_222738-removebg-preview.png" alt="Python Badge" class="small-badge">
+                        <img src="images/Screenshot_2026-08-21_222745-removebg-preview.png" alt="SQL Badge" class="small-badge">
+                        <img src="images/OFAASOFA.png" alt="Oracle Fusion AI Agent Studio Badge" class="small-badge">
+                        <img src="images/OCI25AICFAV1.png" alt="Oracle Cloud Infrastructure AI Foundations Badge" class="small-badge">
+                        <img src="images/aws-knowledge-amazon-eks-training-badge.png" alt="AWS EKS Badge" class="small-badge">
+                    </div>
+                </div>
+
+                <div class="bio-text">
+                    <p> Amitosh Kumar is currently pursuing an M.Sc. in Economics at Jaypee Institute of Information Technology (JIIT), where his academic interests focus on macroeconomics, financial markets, and quantitative research. He is passionate about understanding the intersection of economic theory, data-driven analysis, and investment strategy.</p>
+                    <p>Previously, Amitosh worked as an Advisory and Fundamental Analyst Executive at Mastertrust, contributing to equity research, macroeconomic analysis, and investment advisory. His experience involved evaluating company fundamentals, interpreting economic developments, and translating complex market data into actionable insights. He also worked on automating economic data workflows, reflecting his interest in combining analytical rigor with technology to enhance research efficiency.</p>
+                    <p>With a strong foundation in economic analysis and financial research, Amitosh is particularly interested in macro-financial dynamics, capital markets, sustainable finance, and empirical research. He aspires to contribute to evidence-based research that bridges academic insight with practical applications in finance and public policy.</p>
+                </div>
+            </div>
+
+            <!-- BASE 6 CARDS -->
+            <div class="base-grid">
+                <div class="glass-panel app-card" onclick="openModal('certModal')">
+                    <div class="icon-wrapper"><i class="fa-solid fa-award"></i></div>
+                    <div class="card-info">
+                        <h3>Credentials</h3>
+                        <p style="color: var(--text-muted);">ISB &bull; Columbia</p>
+                    </div>
+                </div>
+
+                <a href="https://www.hackerrank.com/profile/amitoshchandra1" target="_blank" class="glass-panel app-card">
+                    <div class="icon-wrapper"><i class="fa-brands fa-hackerrank"></i></div>
+                    <div class="card-info">
+                        <h3>HackerRank</h3>
+                        <p style="color: var(--text-muted);">5-Star Gold</p>
+                    </div>
+                </a>
+
+                <a href="https://github.com/Amitosh55" target="_blank" class="glass-panel app-card">
+                    <div class="icon-wrapper"><i class="fa-brands fa-github"></i></div>
+                    <div class="card-info">
+                        <h3>GitHub</h3>
+                        <p>Quant & R Repos</p>
+                    </div>
+                </a>
+
+                <div class="glass-panel app-card" onclick="openModal('researchModal')">
+                    <div class="icon-wrapper"><i class="fa-solid fa-newspaper"></i></div>
+                    <div class="card-info">
+                        <h3>Research</h3>
+                        <p>Macro Analysis</p>
+                    </div>
+                </div>
+
+                <a href="https://www.linkedin.com/in/amitosh-kumar" target="_blank" class="glass-panel app-card">
+                    <div class="icon-wrapper"><i class="fa-brands fa-linkedin-in"></i></div>
+                    <div class="card-info">
+                        <h3>LinkedIn</h3>
+                        <p>Equity Track</p>
+                    </div>
+                </a>
+
+                <a href="#" target="_blank" class="glass-panel app-card">
+                    <div class="icon-wrapper"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="card-info">
+                        <h3>Resume</h3>
+                        <p>Download CV</p>
+                    </div>
+                </a>
+            </div>
+        </main>
+
+        <!-- RIGHT SIDEBAR: LINKEDIN & SUBSTACK -->
+        <aside class="right-sidebar">
+            
+            <!-- LINKEDIN PANEL -->
+            <div class="side-panel glass-panel">
+                <h2 class="panel-header">
+                    <i class="fa-brands fa-linkedin"></i> Latest on LinkedIn
+                </h2>
+                <div class="posts-wrapper">
+                    <!-- Post 1: BRICS -->
+                    <a href="https://lnkd.in/p/g_zXHUTt" target="_blank" class="post-card">
+                        <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=200&auto=format&fit=crop" alt="BRICS Summit" class="post-img">
+                        <div class="post-content">
+                            <h4 class="post-title">BRICS Now Outweighs the G7</h4>
+                            <p class="post-excerpt">A year ago, I wrote about BRICS and argued it was a platform, not a panacea. The 18th BRICS summit opens today in New Delhi...</p>
+                        </div>
+                    </a>
+                    <!-- Post 2: Gurcharan Das -->
+                    <a href="https://lnkd.in/p/gpqmXD6P" target="_blank" class="post-card">
+                        <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=200&auto=format&fit=crop" alt="Public Policy Leaders" class="post-img">
+                        <div class="post-content">
+                            <h4 class="post-title">Insights on Public Policy</h4>
+                            <p class="post-excerpt">One of the absolute highlights recently has been the privilege of meeting and interacting with three remarkable minds who have deeply shaped public discourse...</p>
+                        </div>
+                    </a>
+                    <!-- Post 3: McKinsey Forward -->
+                    <a href="https://lnkd.in/p/gJAaBqDg" target="_blank" class="post-card">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=200&auto=format&fit=crop" alt="McKinsey Forward Program" class="post-img">
+                        <div class="post-content">
+                            <h4 class="post-title">McKinsey Forward Acceptance</h4>
+                            <p class="post-excerpt">Excited to share that I've been accepted into the McKinsey & Company Forward program! Looking forward to diving into structured problem-solving...</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- SUBSTACK PANEL -->
+            <div class="side-panel glass-panel">
+                <h2 class="panel-header">
+                    <i class="fa-solid fa-pen-nib"></i> Latest on Substack
+                </h2>
+                <div class="posts-wrapper">
+                    <a href="#" target="_blank" class="post-card">
+                        <img src="https://images.unsplash.com/photo-1616421379761-46ceeb3fcc8f?q=80&w=200&auto=format&fit=crop" alt="RBI Policy" class="post-img">
+                        <div class="post-content">
+                            <h4 class="post-title">The RBI Policy Conundrum</h4>
+                            <p class="post-excerpt">Breaking down the latest monetary policy committee decisions and liquidity impacts on the macro landscape...</p>
+                        </div>
+                    </a>
+                    <a href="#" target="_blank" class="post-card">
+                        <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=200&auto=format&fit=crop" alt="Implied Volatility" class="post-img">
+                        <div class="post-content">
+                            <h4 class="post-title">3D Implied Volatility</h4>
+                            <p class="post-excerpt">A deep dive into quantitative finance, options pricing models, and managing risk parameters during uncertainty...</p>
+                        </div>
+                    </a>
+                    <a href="#" target="_blank" class="post-card">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=200&auto=format&fit=crop" alt="Exports" class="post-img">
+                        <div class="post-content">
+                            <h4 class="post-title">Export Competitiveness</h4>
+                            <p class="post-excerpt">Evaluating the MSME sector growth post-GST reforms, tracking structural economic shifts, and policy adaptations...</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </aside>
+    </div> <!-- End Page Layout -->
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-left">
+            DESIGNED BY <span>AMITOSH KUMAR</span>
+        </div>
+        <div class="footer-right">
+            Contact: <a href="mailto:amitoshchandra1@gmail.com?subject=website enquiry">amitoshchandra1@gmail.com</a>
+        </div>
+    </footer>
+
+    <!-- 01. CREDENTIALS MODAL -->
+    <div id="certModal" class="modal">
+        <div class="glass-panel modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-certificate"></i> Credentials</h2>
+                <span class="close-btn" onclick="closeModal('certModal')"><i class="fa-solid fa-xmark"></i></span>
+            </div>
+            <div class="item-list">
+                <a href="https://coursera.org/share/c9fcb553b422ca429d319f36fd4937f9" target="_blank" class="list-item">
+                    <div>
+                        <h4>Advanced Trading Algorithms</h4>
+                        <p>Indian School of Business (ISB)</p>
+                    </div>
+                    <span class="tag-badge">Verified <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></span>
+                </a>
+                <a href="#" target="_blank" class="list-item">
+                    <div>
+                        <h4>Financial Engineering</h4>
+                        <p>Columbia University</p>
+                    </div>
+                    <span class="tag-badge">Verified <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></span>
+                </a>
+                <a href="#" target="_blank" class="list-item">
+                    <div>
+                        <h4>Quant Risk Management</h4>
+                        <p>University of Geneva</p>
+                    </div>
+                    <span class="tag-badge">Verified <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 02. RESEARCH MODAL -->
+    <div id="researchModal" class="modal">
+        <div class="glass-panel modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-microscope"></i> Research Papers</h2>
+                <span class="close-btn" onclick="closeModal('researchModal')"><i class="fa-solid fa-xmark"></i></span>
+            </div>
+            <div class="item-list">
+                <a href="/blog/rbi-macro-policy" class="list-item">
+                    <div>
+                        <h4>RBI Macro Policy & Liquidity</h4>
+                        <p>Aug 2026 &bull; Macroeconomics</p>
+                    </div>
+                    <span class="tag-badge"><i class="fa-solid fa-chevron-right"></i></span>
+                </a>
+                <a href="/blog/quantitative-volatility" class="list-item">
+                    <div>
+                        <h4>Quant Volatility (3D IV)</h4>
+                        <p>Jul 2026 &bull; Fin Engineering</p>
+                    </div>
+                    <span class="tag-badge"><i class="fa-solid fa-chevron-right"></i></span>
+                </a>
+                <a href="/blog/algorithmic-trading-strategies" class="list-item">
+                    <div>
+                        <h4>Algo Trading in Indian Markets</h4>
+                        <p>Jun 2026 &bull; Algorithmic Trading</p>
+                    </div>
+                    <span class="tag-badge"><i class="fa-solid fa-chevron-right"></i></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        function openModal(modalId) { 
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'block';
+            setTimeout(() => { modal.classList.add('show'); }, 10);
+        }
+
+        function closeModal(modalId) { 
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('show');
+            setTimeout(() => { modal.style.display = 'none'; }, 300);
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('show');
+                setTimeout(() => { event.target.style.display = "none"; }, 300);
+            }
+        }
+    </script>
+
+</body>
+</html>
