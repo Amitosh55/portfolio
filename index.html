@@ -16,15 +16,15 @@
             --text-main: #F4F4F5;
             --text-muted: rgba(235, 235, 245, 0.5); 
             
-            /* Liquid Glass Variables (Subtle for Elegance) */
+            /* Liquid Glass Variables */
             --glass-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
             --glass-hover: linear-gradient(145deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.02) 100%);
             --glass-border: rgba(255, 255, 255, 0.08);
             --glass-highlight: rgba(255, 255, 255, 0.12);
             --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
             
-            /* Restrained Theme Colors (Strategic Think Tank Feel) */
-            --theme-accent: #c9a975; /* Muted Gold/Bronze */
+            /* Restrained Theme Colors */
+            --theme-accent: #c9a975; 
             --theme-accent-dim: #8b7956;
         }
 
@@ -48,13 +48,13 @@
             padding: 40px 20px 20px 20px;
         }
 
-        /* NEW: Page Layout Grid */
+        /* NEW 2-COLUMN LAYOUT */
         .page-layout {
             display: grid;
-            grid-template-columns: 300px minmax(auto, 900px) 300px;
+            grid-template-columns: minmax(auto, 900px) 360px; /* Main content left, sidebar right */
             gap: 32px;
             width: 100%;
-            max-width: 1600px;
+            max-width: 1300px;
             margin: 0 auto;
             align-items: start;
         }
@@ -64,6 +64,15 @@
             flex-direction: column;
             gap: 32px;
             width: 100%;
+        }
+
+        /* RIGHT SIDEBAR (Contains both panels) */
+        .right-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            position: sticky;
+            top: 40px;
         }
 
         /* LIQUID GLASS UTILITY CLASS */
@@ -80,17 +89,16 @@
 
         /* SIDE PANELS CSS */
         .side-panel {
-            padding: 24px;
+            padding: 24px 16px 24px 24px; /* Less right padding for scrollbar */
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            position: sticky;
-            top: 40px; /* Makes panels sticky when scrolling main content */
+            gap: 16px;
+            border-radius: 28px;
         }
 
         .panel-header {
             font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: var(--theme-accent);
             display: flex;
             align-items: center;
@@ -98,66 +106,97 @@
             font-style: italic;
             border-bottom: 1px solid rgba(255,255,255,0.05);
             padding-bottom: 12px;
+            margin-right: 8px;
         }
 
+        /* SCROLLABLE WRAPPER */
         .posts-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 12px;
+            max-height: 280px; /* Keeps panel small */
+            overflow-y: auto;
+            padding-right: 8px; /* Space for scrollbar */
         }
 
+        /* Custom Scrollbar for feeds */
+        .posts-wrapper::-webkit-scrollbar {
+            width: 4px;
+        }
+        .posts-wrapper::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
+        .posts-wrapper::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+        }
+        .posts-wrapper::-webkit-scrollbar-thumb:hover {
+            background: var(--theme-accent-dim);
+        }
+
+        /* COMPACT POST CARD */
         .post-card {
             background: rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            overflow: hidden;
+            border-radius: 16px;
             text-decoration: none;
             transition: all 0.3s ease;
             display: flex;
-            flex-direction: column;
+            flex-direction: row; /* Image and text side-by-side */
+            align-items: center;
+            padding: 10px;
+            gap: 12px;
         }
 
         .post-card:hover {
             background: rgba(255, 255, 255, 0.05);
             border-color: rgba(201, 169, 117, 0.3);
-            transform: translateY(-3px);
+            transform: translateX(4px);
         }
 
         .post-img {
-            width: 100%;
-            height: 120px;
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
             object-fit: cover;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            flex-shrink: 0;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         .post-content {
-            padding: 16px;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 4px;
+            flex: 1;
         }
 
         .post-title {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: var(--text-main);
             line-height: 1.3;
         }
 
         .post-excerpt {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
-            line-height: 1.5;
+            line-height: 1.4;
             font-weight: 400;
+            /* Truncates text to exactly 2 lines */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .post-meta {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: var(--theme-accent-dim);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-top: 4px;
+            margin-top: 2px;
         }
 
         /* HEADER */
@@ -421,7 +460,7 @@
         footer {
             margin-top: 40px;
             width: 100%;
-            max-width: 1564px; /* Matches grid max-width */
+            max-width: 1300px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -460,9 +499,7 @@
             transition: opacity 0.3s ease;
         }
         
-        .modal.show {
-            opacity: 1;
-        }
+        .modal.show { opacity: 1; }
 
         .modal-content {
             max-width: 540px; 
@@ -473,16 +510,9 @@
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .modal.show .modal-content {
-            transform: translateY(0) scale(1);
-        }
+        .modal.show .modal-content { transform: translateY(0) scale(1); }
 
-        .modal-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 24px; 
-        }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
         
         .modal-header h2 { 
             font-family: 'Playfair Display', serif;
@@ -497,17 +527,10 @@
         }
         
         .close-btn { 
-            width: 32px;
-            height: 32px;
+            width: 32px; height: 32px;
             background: rgba(255,255,255,0.05);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem; 
-            color: var(--text-muted); 
-            cursor: pointer; 
-            transition: all 0.2s ease;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; color: var(--text-muted); cursor: pointer; transition: all 0.2s ease;
         }
 
         .close-btn:hover { background: rgba(255,255,255,0.15); color: #FFF; transform: scale(1.05); }
@@ -518,14 +541,9 @@
         .list-item {
             background: rgba(0, 0, 0, 0.4); 
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 16px 20px; 
-            border-radius: 20px;
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            padding: 16px 20px; border-radius: 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            text-decoration: none; transition: all 0.3s ease; cursor: pointer;
         }
 
         .list-item:hover {
@@ -538,39 +556,24 @@
         .list-item p { font-size: 0.75rem; color: var(--text-muted); font-weight: 500;}
         
         .tag-badge { 
-            font-size: 0.7rem; 
-            padding: 6px 10px; 
-            border-radius: 10px; 
-            font-weight: 700; 
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--theme-accent);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            border: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.7rem; padding: 6px 10px; border-radius: 10px; font-weight: 700; 
+            background: rgba(255, 255, 255, 0.05); color: var(--theme-accent);
+            display: flex; align-items: center; gap: 4px; border: 1px solid rgba(255,255,255,0.05);
         }
 
         /* RESPONSIVE BREAKPOINTS */
-        @media (max-width: 1400px) {
-            .page-layout { grid-template-columns: 260px minmax(auto, 850px) 260px; gap: 24px; }
-        }
-
         @media (max-width: 1200px) {
             .page-layout { 
                 grid-template-columns: 1fr; 
-                gap: 32px;
             }
-            .side-panel {
+            .right-sidebar {
+                flex-direction: row;
+                flex-wrap: wrap;
                 position: relative;
                 top: 0;
             }
-            .posts-wrapper {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-            .post-card {
-                flex: 1 1 calc(33.333% - 16px);
-                min-width: 250px;
+            .side-panel {
+                flex: 1 1 300px;
             }
         }
 
@@ -579,25 +582,13 @@
         }
 
         @media (max-width: 768px) {
+            .right-sidebar { flex-direction: column; }
             .bio-banner { 
-                flex-direction: column; 
-                text-align: center;
-                gap: 32px;
-                padding: 32px 24px;
+                flex-direction: column; text-align: center; gap: 32px; padding: 32px 24px;
             }
-            .bio-visuals {
-                flex-direction: column; 
-                align-items: center;
-            }
-            .badges-group {
-                gap: 8px;
-            }
-            .small-badge {
-                width: 38px;
-            }
-            .post-card {
-                flex: 1 1 100%;
-            }
+            .bio-visuals { flex-direction: column; align-items: center; }
+            .badges-group { gap: 8px; }
+            .small-badge { width: 38px; }
         }
 
         @media (max-width: 600px) {
@@ -618,45 +609,8 @@
 
     <div class="page-layout">
         
-        <!-- LEFT PANEL: LINKEDIN FEED -->
-        <aside class="side-panel glass-panel">
-            <h2 class="panel-header">
-                <i class="fa-brands fa-linkedin"></i> Latest on LinkedIn
-            </h2>
-            <div class="posts-wrapper">
-                <!-- Post 1 -->
-                <a href="#" target="_blank" class="post-card">
-                    <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=400&auto=format&fit=crop" alt="Market Analysis" class="post-img">
-                    <div class="post-content">
-                        <h4 class="post-title">Market Outlook 2026</h4>
-                        <p class="post-excerpt">An analysis of the current macro environment and its impact on emerging markets...</p>
-                        <span class="post-meta">2 Days Ago</span>
-                    </div>
-                </a>
-                <!-- Post 2 -->
-                <a href="#" target="_blank" class="post-card">
-                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=400&auto=format&fit=crop" alt="Automation Data" class="post-img">
-                    <div class="post-content">
-                        <h4 class="post-title">Automation in Economic Research</h4>
-                        <p class="post-excerpt">How Python and APIs are changing the way we aggregate fundamental data and run regressions...</p>
-                        <span class="post-meta">1 Week Ago</span>
-                    </div>
-                </a>
-                <!-- Post 3 -->
-                <a href="#" target="_blank" class="post-card">
-                    <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=400&auto=format&fit=crop" alt="Sustainable Finance" class="post-img">
-                    <div class="post-content">
-                        <h4 class="post-title">The Sustainable Finance Shift</h4>
-                        <p class="post-excerpt">Exploring the transition of traditional equity portfolios into ESG-compliant models...</p>
-                        <span class="post-meta">2 Weeks Ago</span>
-                    </div>
-                </a>
-            </div>
-        </aside>
-
-        <!-- CENTER PANEL: MAIN CONTENT (Existing Content) -->
+        <!-- CENTER PANEL: MAIN CONTENT -->
         <main class="main-container">
-            
             <!-- HEADER -->
             <header>
                 <div class="header-title">
@@ -665,13 +619,11 @@
                 </div>
 
                 <div class="header-actions">
-                    <!-- BLOG BUTTON -->
                     <a href="/blog" class="glass-panel glass-btn blog-header-btn">
                         <i class="fa-solid fa-book-open" style="color: var(--theme-accent);"></i>
                         <span>Blog</span>
                     </a>
 
-                    <!-- STRATEGIX BADGE -->
                     <a href="https://strategix-671509941714.us-west1.run.app" target="_blank" class="glass-panel glass-btn strategix-badge-btn">
                         <div class="brand-top-row">
                             <i class="fa-solid fa-chart-line" style="color: var(--text-main);"></i>
@@ -687,14 +639,10 @@
                 </div>
             </header>
 
-            <!-- BIO BANNER with Images integrated on the Right -->
+            <!-- BIO BANNER -->
             <div class="glass-panel bio-banner">
-                
-                <!-- Side visuals grouping Profile Pic & All Badges -->
                 <div class="bio-visuals">
                     <img src="images/1752671429184.png" alt="Amitosh Kumar Profile" class="profile-pic">
-                    
-                    <!-- Single row of small badges -->
                     <div class="badges-group">
                         <img src="images/Screenshot_2026-08-21_222738-removebg-preview.png" alt="Python Badge" class="small-badge">
                         <img src="images/Screenshot_2026-08-21_222745-removebg-preview.png" alt="SQL Badge" class="small-badge">
@@ -704,7 +652,6 @@
                     </div>
                 </div>
 
-                <!-- Bio Text description -->
                 <div class="bio-text">
                     <p> Amitosh Kumar is currently pursuing an M.Sc. in Economics at Jaypee Institute of Information Technology (JIIT), where his academic interests focus on macroeconomics, financial markets, and quantitative research. He is passionate about understanding the intersection of economic theory, data-driven analysis, and investment strategy.</p>
                     <p>Previously, Amitosh worked as an Advisory and Fundamental Analyst Executive at Mastertrust, contributing to equity research, macroeconomic analysis, and investment advisory. His experience involved evaluating company fundamentals, interpreting economic developments, and translating complex market data into actionable insights. He also worked on automating economic data workflows, reflecting his interest in combining analytical rigor with technology to enhance research efficiency.</p>
@@ -714,8 +661,6 @@
 
             <!-- BASE 6 CARDS -->
             <div class="base-grid">
-                
-                <!-- 01. Credentials (Modal Trigger) -->
                 <div class="glass-panel app-card" onclick="openModal('certModal')">
                     <div class="icon-wrapper"><i class="fa-solid fa-award"></i></div>
                     <div class="card-info">
@@ -724,7 +669,6 @@
                     </div>
                 </div>
 
-                <!-- 02. HackerRank -->
                 <a href="https://www.hackerrank.com/profile/amitoshchandra1" target="_blank" class="glass-panel app-card">
                     <div class="icon-wrapper"><i class="fa-brands fa-hackerrank"></i></div>
                     <div class="card-info">
@@ -733,7 +677,6 @@
                     </div>
                 </a>
 
-                <!-- 03. GitHub -->
                 <a href="https://github.com/Amitosh55" target="_blank" class="glass-panel app-card">
                     <div class="icon-wrapper"><i class="fa-brands fa-github"></i></div>
                     <div class="card-info">
@@ -742,7 +685,6 @@
                     </div>
                 </a>
 
-                <!-- 04. Research (Modal Trigger) -->
                 <div class="glass-panel app-card" onclick="openModal('researchModal')">
                     <div class="icon-wrapper"><i class="fa-solid fa-newspaper"></i></div>
                     <div class="card-info">
@@ -751,7 +693,6 @@
                     </div>
                 </div>
 
-                <!-- 05. LinkedIn -->
                 <a href="https://www.linkedin.com/in/amitosh-kumar" target="_blank" class="glass-panel app-card">
                     <div class="icon-wrapper"><i class="fa-brands fa-linkedin-in"></i></div>
                     <div class="card-info">
@@ -760,7 +701,6 @@
                     </div>
                 </a>
 
-                <!-- 06. Resume -->
                 <a href="#" target="_blank" class="glass-panel app-card">
                     <div class="icon-wrapper"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="card-info">
@@ -768,46 +708,85 @@
                         <p>Download CV</p>
                     </div>
                 </a>
-
             </div>
         </main>
 
-        <!-- RIGHT PANEL: SUBSTACK NOTES -->
-        <aside class="side-panel glass-panel">
-            <h2 class="panel-header">
-                <i class="fa-solid fa-pen-nib"></i> Latest on Substack
-            </h2>
-            <div class="posts-wrapper">
-                <!-- Post 1 -->
-                <a href="#" target="_blank" class="post-card">
-                    <img src="https://images.unsplash.com/photo-1616421379761-46ceeb3fcc8f?q=80&w=400&auto=format&fit=crop" alt="RBI Policy" class="post-img">
-                    <div class="post-content">
-                        <h4 class="post-title">The RBI Policy Conundrum</h4>
-                        <p class="post-excerpt">Breaking down the latest monetary policy committee decisions and liquidity impacts...</p>
-                        <span class="post-meta">Oct 2026</span>
-                    </div>
-                </a>
-                <!-- Post 2 -->
-                <a href="#" target="_blank" class="post-card">
-                    <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=400&auto=format&fit=crop" alt="Implied Volatility" class="post-img">
-                    <div class="post-content">
-                        <h4 class="post-title">Understanding 3D Implied Volatility</h4>
-                        <p class="post-excerpt">A deep dive into quantitative finance, options pricing models, and risk parameters...</p>
-                        <span class="post-meta">Sep 2026</span>
-                    </div>
-                </a>
-                <!-- Post 3 -->
-                <a href="#" target="_blank" class="post-card">
-                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=400&auto=format&fit=crop" alt="Exports" class="post-img">
-                    <div class="post-content">
-                        <h4 class="post-title">India's Export Competitiveness</h4>
-                        <p class="post-excerpt">Evaluating the MSME sector growth post-GST reforms and structural economic shifts...</p>
-                        <span class="post-meta">Aug 2026</span>
-                    </div>
-                </a>
+        <!-- RIGHT SIDEBAR: LINKEDIN & SUBSTACK -->
+        <aside class="right-sidebar">
+            
+            <!-- LINKEDIN PANEL -->
+            <div class="side-panel glass-panel">
+                <h2 class="panel-header">
+                    <i class="fa-brands fa-linkedin"></i> Latest on LinkedIn
+                </h2>
+                <div class="posts-wrapper">
+                    <!-- Post 1 -->
+                    <a href="#" target="_blank" class="post-card">
+                        <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=200&auto=format&fit=crop" alt="Market Analysis" class="post-img">
+                        <div class="post-content">
+                            <h4 class="post-title">Market Outlook 2026</h4>
+                            <p class="post-excerpt">An analysis of the current macro environment and its impact on emerging markets...</p>
+                            <span class="post-meta">2 Days Ago</span>
+                        </div>
+                    </a>
+                    <!-- Post 2 -->
+                    <a href="#" target="_blank" class="post-card">
+                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=200&auto=format&fit=crop" alt="Automation Data" class="post-img">
+                        <div class="post-content">
+                            <h4 class="post-title">Automation in Research</h4>
+                            <p class="post-excerpt">How Python and APIs are changing the way we aggregate fundamental data and run regressions...</p>
+                            <span class="post-meta">1 Week Ago</span>
+                        </div>
+                    </a>
+                    <!-- Post 3 -->
+                    <a href="#" target="_blank" class="post-card">
+                        <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=200&auto=format&fit=crop" alt="Sustainable Finance" class="post-img">
+                        <div class="post-content">
+                            <h4 class="post-title">The ESG Portfolio Shift</h4>
+                            <p class="post-excerpt">Exploring the transition of traditional equity portfolios into ESG-compliant models...</p>
+                            <span class="post-meta">2 Weeks Ago</span>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </aside>
 
+            <!-- SUBSTACK PANEL -->
+            <div class="side-panel glass-panel">
+                <h2 class="panel-header">
+                    <i class="fa-solid fa-pen-nib"></i> Latest on Substack
+                </h2>
+                <div class="posts-wrapper">
+                    <!-- Post 1 -->
+                    <a href="#" target="_blank" class="post-card">
+                        <img src="https://images.unsplash.com/photo-1616421379761-46ceeb3fcc8f?q=80&w=200&auto=format&fit=crop" alt="RBI Policy" class="post-img">
+                        <div class="post-content">
+                            <h4 class="post-title">The RBI Policy Conundrum</h4>
+                            <p class="post-excerpt">Breaking down the latest monetary policy committee decisions and liquidity impacts...</p>
+                            <span class="post-meta">Oct 2026</span>
+                        </div>
+                    </a>
+                    <!-- Post 2 -->
+                    <a href="#" target="_blank" class="post-card">
+                        <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=200&auto=format&fit=crop" alt="Implied Volatility" class="post-img">
+                        <div class="post-content">
+                            <h4 class="post-title">3D Implied Volatility</h4>
+                            <p class="post-excerpt">A deep dive into quantitative finance, options pricing models, and risk parameters...</p>
+                            <span class="post-meta">Sep 2026</span>
+                        </div>
+                    </a>
+                    <!-- Post 3 -->
+                    <a href="#" target="_blank" class="post-card">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=200&auto=format&fit=crop" alt="Exports" class="post-img">
+                        <div class="post-content">
+                            <h4 class="post-title">Export Competitiveness</h4>
+                            <p class="post-excerpt">Evaluating the MSME sector growth post-GST reforms and structural economic shifts...</p>
+                            <span class="post-meta">Aug 2026</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </aside>
     </div> <!-- End Page Layout -->
 
     <!-- FOOTER -->
@@ -827,7 +806,6 @@
                 <h2><i class="fa-solid fa-certificate"></i> Credentials</h2>
                 <span class="close-btn" onclick="closeModal('certModal')"><i class="fa-solid fa-xmark"></i></span>
             </div>
-            
             <div class="item-list">
                 <a href="https://coursera.org/share/c9fcb553b422ca429d319f36fd4937f9" target="_blank" class="list-item">
                     <div>
@@ -836,7 +814,6 @@
                     </div>
                     <span class="tag-badge">Verified <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></span>
                 </a>
-
                 <a href="#" target="_blank" class="list-item">
                     <div>
                         <h4>Financial Engineering</h4>
@@ -844,7 +821,6 @@
                     </div>
                     <span class="tag-badge">Verified <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></span>
                 </a>
-
                 <a href="#" target="_blank" class="list-item">
                     <div>
                         <h4>Quant Risk Management</h4>
@@ -863,7 +839,6 @@
                 <h2><i class="fa-solid fa-microscope"></i> Research Papers</h2>
                 <span class="close-btn" onclick="closeModal('researchModal')"><i class="fa-solid fa-xmark"></i></span>
             </div>
-            
             <div class="item-list">
                 <a href="/blog/rbi-macro-policy" class="list-item">
                     <div>
@@ -872,7 +847,6 @@
                     </div>
                     <span class="tag-badge"><i class="fa-solid fa-chevron-right"></i></span>
                 </a>
-
                 <a href="/blog/quantitative-volatility" class="list-item">
                     <div>
                         <h4>Quant Volatility (3D IV)</h4>
@@ -880,7 +854,6 @@
                     </div>
                     <span class="tag-badge"><i class="fa-solid fa-chevron-right"></i></span>
                 </a>
-
                 <a href="/blog/algorithmic-trading-strategies" class="list-item">
                     <div>
                         <h4>Algo Trading in Indian Markets</h4>
@@ -897,25 +870,19 @@
         function openModal(modalId) { 
             const modal = document.getElementById(modalId);
             modal.style.display = 'block';
-            setTimeout(() => {
-                modal.classList.add('show');
-            }, 10);
+            setTimeout(() => { modal.classList.add('show'); }, 10);
         }
 
         function closeModal(modalId) { 
             const modal = document.getElementById(modalId);
             modal.classList.remove('show');
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300);
+            setTimeout(() => { modal.style.display = 'none'; }, 300);
         }
 
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.classList.remove('show');
-                setTimeout(() => {
-                    event.target.style.display = "none";
-                }, 300);
+                setTimeout(() => { event.target.style.display = "none"; }, 300);
             }
         }
     </script>
